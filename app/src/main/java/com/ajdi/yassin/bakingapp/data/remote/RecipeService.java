@@ -1,6 +1,6 @@
 package com.ajdi.yassin.bakingapp.data.remote;
 
-import com.ajdi.yassin.bakingapp.data.remote.model.Recipe;
+import com.ajdi.yassin.bakingapp.data.model.Recipe;
 
 import java.util.List;
 

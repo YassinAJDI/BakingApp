@@ -4,7 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ajdi.yassin.bakingapp.data.remote.model.Recipe;
+import com.ajdi.yassin.bakingapp.data.model.Recipe;
 import com.ajdi.yassin.bakingapp.databinding.ItemRecipeBinding;
 
 import androidx.annotation.NonNull;

@@ -3,7 +3,7 @@ package com.ajdi.yassin.bakingapp.ui.list;
 import android.os.Bundle;
 
 import com.ajdi.yassin.bakingapp.R;
-import com.ajdi.yassin.bakingapp.data.remote.model.Recipe;
+import com.ajdi.yassin.bakingapp.data.model.Recipe;
 import com.ajdi.yassin.bakingapp.utils.Injection;
 import com.ajdi.yassin.bakingapp.utils.ViewModelFactory;
 

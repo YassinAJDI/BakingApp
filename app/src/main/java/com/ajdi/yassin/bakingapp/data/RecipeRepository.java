@@ -1,7 +1,7 @@
 package com.ajdi.yassin.bakingapp.data;
 
 import com.ajdi.yassin.bakingapp.data.remote.RecipeService;
-import com.ajdi.yassin.bakingapp.data.remote.model.Recipe;
+import com.ajdi.yassin.bakingapp.data.model.Recipe;
 import com.ajdi.yassin.bakingapp.utils.AppExecutors;
 
 import java.util.Collections;

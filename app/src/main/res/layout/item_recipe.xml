@@ -9,18 +9,20 @@
             type="com.ajdi.yassin.bakingapp.data.remote.model.Recipe" />
     </data>
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:orientation="vertical">
+        android:layout_marginBottom="32dp">
 
         <TextView
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="16dp"
             android:id="@+id/text_recipe_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{recipe.name}"
             tools:text="Recipe Title" />
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </layout>
