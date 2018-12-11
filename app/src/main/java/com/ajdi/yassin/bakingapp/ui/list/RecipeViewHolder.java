@@ -1,11 +1,13 @@
 package com.ajdi.yassin.bakingapp.ui.list;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ajdi.yassin.bakingapp.data.model.Recipe;
 import com.ajdi.yassin.bakingapp.databinding.ItemRecipeBinding;
+import com.ajdi.yassin.bakingapp.ui.details.RecipeDetailsActivity;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,13 +27,14 @@ class RecipeViewHolder extends RecyclerView.ViewHolder {
 
     public void bindTo(final Recipe recipe) {
         binding.setRecipe(recipe);
+
         // recipe click event
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(view.getContext(), DetailsActivity.class);
-//                intent.putExtra(DetailsActivity.EXTRA_MOVIE_ID, recipe.getId());
-//                view.getContext().startActivity(intent);
+                Intent intent = new Intent(view.getContext(), RecipeDetailsActivity.class);
+                intent.putExtra(RecipeDetailsActivity.EXTRA_RECIPE_DATA, recipe);
+                view.getContext().startActivity(intent);
             }
         });
 

@@ -6,7 +6,7 @@
 
         <variable
             name="recipe"
-            type="com.ajdi.yassin.bakingapp.data.remote.model.Recipe" />
+            type="com.ajdi.yassin.bakingapp.data.model.Recipe" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -15,12 +15,12 @@
         android:layout_marginBottom="32dp">
 
         <TextView
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:padding="16dp"
             android:id="@+id/text_recipe_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="16dp"
             android:text="@{recipe.name}"
             tools:text="Recipe Title" />
     </androidx.cardview.widget.CardView>
