@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 /**
  * @author Yassin Ajdi
@@ -51,15 +52,18 @@ public class RecipeRepository {
                 if (response.isSuccessful()) {
                     List<Recipe> data = response.body();
                     List<Recipe> recipes = data != null ? data : Collections.<Recipe>emptyList();
+                    Timber.d("Parsing finished. number of recipes: %s", recipes.size());
                     recipeListLiveData.postValue(recipes);
                 } else {
                     // TODO: 12/11/2018 handle errors
+                    Timber.d("error code: %s", response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<List<Recipe>> call, Throwable t) {
                 // TODO: 12/11/2018 handle errors
+                Timber.d("unknown error: %s", t.getMessage());
             }
         });
         return recipeListLiveData;

@@ -11,7 +11,7 @@ public class Ingredient {
 
     @SerializedName("quantity")
     @Expose
-    private long quantity;
+    private double quantity;
 
     @SerializedName("measure")
     @Expose
@@ -21,11 +21,11 @@ public class Ingredient {
     @Expose
     private String ingredient;
 
-    public long getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(long quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 
