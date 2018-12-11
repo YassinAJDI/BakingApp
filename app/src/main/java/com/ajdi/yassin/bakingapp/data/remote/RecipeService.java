@@ -2,6 +2,8 @@ package com.ajdi.yassin.bakingapp.data.remote;
 
 import com.ajdi.yassin.bakingapp.data.remote.model.Recipe;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -15,5 +17,5 @@ import retrofit2.http.GET;
 public interface RecipeService {
 
     @GET("baking.json")
-    Call<Recipe> getAllRecipes();
+    Call<List<Recipe>> getAllRecipes();
 }
