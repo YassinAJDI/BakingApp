@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -36,9 +36,11 @@ public class RecipeListActivity extends AppCompatActivity {
     private void setupListAdapter() {
         RecyclerView recyclerView = findViewById(R.id.rv_recipe_list);
         final RecipesAdapter adapter = new RecipesAdapter();
+        final GridLayoutManager layoutManager = new GridLayoutManager(this,
+                getResources().getInteger(R.integer.grid_spans));
 
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(layoutManager);
 
         // observe recipe list
         viewModel.getListLiveData().observe(this, new Observer<List<Recipe>>() {
