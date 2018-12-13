@@ -19,6 +19,8 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
     public static final String EXTRA_RECIPE_DATA = "extra_recipe";
 
+    private boolean mTwoPane = false;
+
     private RecipeDetailViewModel mViewModel;
 
     @Override
@@ -32,8 +34,13 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             return;
         }
 
+        // check if we are in tablet mode
+        if (findViewById(R.id.fragment_step_detail) != null) {
+            mTwoPane = true;
+        }
+
         if (savedInstanceState == null) {
-            setupViewFragment();
+//            setupViewFragment();
         }
         mViewModel = obtainViewModel(this);
         // TODO: 12/12/2018 only run once
