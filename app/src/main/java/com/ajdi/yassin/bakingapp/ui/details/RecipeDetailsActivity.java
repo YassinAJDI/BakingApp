@@ -42,7 +42,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
         mViewModel = obtainViewModel(this);
         if (savedInstanceState == null) {
-//            setupViewFragment();
+            setupViewFragment();
             mViewModel.init(recipe);
         }
 
@@ -60,6 +60,9 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     }
 
     private void setupViewFragment() {
+        if (mTwoPane) {
+            return;
+        }
         RecipeDetailFragment discoverMoviesFragment = RecipeDetailFragment.newInstance();
         ActivityUtils.replaceFragmentInActivity(
                 getSupportFragmentManager(), discoverMoviesFragment, R.id.fragment_recipe_detail);

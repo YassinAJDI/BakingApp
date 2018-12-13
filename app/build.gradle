@@ -22,6 +22,10 @@ android {
     dataBinding {
         enabled = true
     }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -49,6 +53,9 @@ dependencies {
 
     // OkHttp
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+
+    // Exoplayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.9.2'
 
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
