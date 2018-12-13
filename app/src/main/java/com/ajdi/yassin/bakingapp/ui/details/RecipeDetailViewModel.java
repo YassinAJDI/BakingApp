@@ -2,6 +2,7 @@ package com.ajdi.yassin.bakingapp.ui.details;
 
 import com.ajdi.yassin.bakingapp.data.model.Ingredient;
 import com.ajdi.yassin.bakingapp.data.model.Recipe;
+import com.ajdi.yassin.bakingapp.data.model.Step;
 
 import java.util.List;
 
@@ -20,14 +21,25 @@ public class RecipeDetailViewModel extends ViewModel {
 
     private MutableLiveData<List<Ingredient>> ingredientsLiveData = new MutableLiveData<>();
 
+    private MutableLiveData<List<Step>> stepsList = new MutableLiveData<>();
+
     public void init(Recipe recipe) {
         Timber.d("Initializing viewModel");
 //        setRecipeLiveData(recipe);
         setIngredients(recipe.getIngredients());
+        setSteps(recipe.getSteps());
+    }
+
+    private void setSteps(List<Step> steps) {
+        stepsList.setValue(steps);
     }
 
     private void setIngredients(List<Ingredient> ingredients) {
         ingredientsLiveData.setValue(ingredients);
+    }
+
+    public LiveData<List<Step>> getStepsList() {
+        return stepsList;
     }
 
     public LiveData<List<Ingredient>> getIngredientsLiveData() {
