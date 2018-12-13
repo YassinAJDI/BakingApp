@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 
 import com.ajdi.yassin.bakingapp.R;
 import com.ajdi.yassin.bakingapp.data.model.Ingredient;
+import com.ajdi.yassin.bakingapp.data.model.Step;
 import com.ajdi.yassin.bakingapp.ui.details.ingredients.IngredientsAdapter;
+import com.ajdi.yassin.bakingapp.ui.details.steps.StepsAdapter;
 
 import java.util.List;
 
@@ -25,7 +27,6 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class RecipeDetailFragment extends Fragment {
 
-    //    private OnFragmentInteractionListener mListener;
     private RecipeDetailViewModel mViewModel;
 
     public RecipeDetailFragment() {
@@ -53,6 +54,7 @@ public class RecipeDetailFragment extends Fragment {
 
         mViewModel = RecipeDetailsActivity.obtainViewModel(getActivity());
         setupIngredientsAdapter();
+        setupStepsAdapter();
     }
 
     private void setupIngredientsAdapter() {
@@ -71,43 +73,19 @@ public class RecipeDetailFragment extends Fragment {
         });
     }
 
-    //
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
+    private void setupStepsAdapter() {
+        RecyclerView listSteps = getActivity().findViewById(R.id.rv_steps);
+        final StepsAdapter adapter = new StepsAdapter(mViewModel);
+        listSteps.setAdapter(adapter);
+        listSteps.setLayoutManager(new LinearLayoutManager(getActivity()));
+        ViewCompat.setNestedScrollingEnabled(listSteps, false);
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-//
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
-//
-//    /**
-//     * This interface must be implemented by activities that contain this
-//     * fragment to allow an interaction in this fragment to be communicated
-//     * to the activity and potentially other fragments contained in that
-//     * activity.
-//     * <p>
-//     * See the Android Training lesson <a href=
-//     * "http://developer.android.com/training/basics/fragments/communicating.html"
-//     * >Communicating with Other Fragments</a> for more information.
-//     */
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        void onFragmentInteraction(Uri uri);
-//    }
+        // observe steps list
+        mViewModel.getStepsList().observe(getViewLifecycleOwner(), new Observer<List<Step>>() {
+            @Override
+            public void onChanged(List<Step> steps) {
+                adapter.submitList(steps);
+            }
+        });
+    }
 }

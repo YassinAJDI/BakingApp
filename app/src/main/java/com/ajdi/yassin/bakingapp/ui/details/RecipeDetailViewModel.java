@@ -3,6 +3,7 @@ package com.ajdi.yassin.bakingapp.ui.details;
 import com.ajdi.yassin.bakingapp.data.model.Ingredient;
 import com.ajdi.yassin.bakingapp.data.model.Recipe;
 import com.ajdi.yassin.bakingapp.data.model.Step;
+import com.ajdi.yassin.bakingapp.utils.SingleLiveEvent;
 
 import java.util.List;
 
@@ -23,11 +24,24 @@ public class RecipeDetailViewModel extends ViewModel {
 
     private MutableLiveData<List<Step>> stepsList = new MutableLiveData<>();
 
+    private MutableLiveData<Step> currentStep = new MutableLiveData<>();
+
+    private final SingleLiveEvent<Integer> openStepDetailEvent = new SingleLiveEvent<>();
+
     public void init(Recipe recipe) {
         Timber.d("Initializing viewModel");
 //        setRecipeLiveData(recipe);
         setIngredients(recipe.getIngredients());
         setSteps(recipe.getSteps());
+        setCurrentStep(0);
+    }
+
+    public void setCurrentStep(int position) {
+        currentStep.setValue(stepsList.getValue().get(position));
+    }
+
+    public LiveData<Step> getCurrentStep() {
+        return currentStep;
     }
 
     private void setSteps(List<Step> steps) {
@@ -52,5 +66,9 @@ public class RecipeDetailViewModel extends ViewModel {
 
     public LiveData<Recipe> getRecipeLiveData() {
         return recipeLiveData;
+    }
+
+    public SingleLiveEvent<Integer> getOpenStepDetailEvent() {
+        return openStepDetailEvent;
     }
 }

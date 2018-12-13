@@ -22,7 +22,7 @@ public class StepViewHolder extends RecyclerView.ViewHolder {
         this.binding = binding;
     }
 
-    public void bindTo(final Step step, int position) {
+    public void bindTo(final Step step, final int position) {
         binding.textTitle.setText(step.getShortDescription());
         binding.textOrder.setText(String.valueOf(position));
         binding.executePendingBindings();

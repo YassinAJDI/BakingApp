@@ -9,6 +9,7 @@ import com.ajdi.yassin.bakingapp.utils.ActivityUtils;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 /**
@@ -34,17 +35,28 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             return;
         }
 
-        // check if we are in tablet mode
+        // determine which layout we are in (tablet or phone)
         if (findViewById(R.id.fragment_step_detail) != null) {
             mTwoPane = true;
         }
 
+        mViewModel = obtainViewModel(this);
         if (savedInstanceState == null) {
 //            setupViewFragment();
+            mViewModel.init(recipe);
         }
-        mViewModel = obtainViewModel(this);
-        // TODO: 12/12/2018 only run once
-        mViewModel.init(recipe);
+
+        mViewModel.getOpenStepDetailEvent().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer position) {
+                if (mTwoPane) {
+                    mViewModel.setCurrentStep(position);
+                    StepDetailFragment fragment = StepDetailFragment.newInstance();
+                    ActivityUtils.replaceFragmentInActivity(
+                            getSupportFragmentManager(), fragment, R.id.fragment_step_detail);
+                }
+            }
+        });
     }
 
     private void setupViewFragment() {
