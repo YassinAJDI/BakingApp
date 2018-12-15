@@ -29,7 +29,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_details);
 
-        Recipe recipe = getIntent().<Recipe>getParcelableExtra(EXTRA_RECIPE_DATA);
+        Recipe recipe = getIntent().getParcelableExtra(EXTRA_RECIPE_DATA);
         if (recipe == null) {
             closeOnError();
             return;
@@ -46,6 +46,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             mViewModel.init(recipe);
         }
 
+        // observe steps list click event
         mViewModel.getOpenStepDetailEvent().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer position) {
