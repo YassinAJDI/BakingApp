@@ -14,9 +14,9 @@ import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.ui.PlayerView;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
 import androidx.annotation.Nullable;
@@ -32,6 +32,7 @@ public class StepDetailFragment extends Fragment {
 
     private RecipeDetailViewModel mViewModel;
     private SimpleExoPlayer player;
+    private PlayerView playerView;
 
     public StepDetailFragment() {
         // Required empty public constructor
@@ -67,17 +68,32 @@ public class StepDetailFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        if (Util.SDK_INT > 23) {
+//            initializePlayer();
+            if (playerView != null) {
+                playerView.onResume();
+            }
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        if (Util.SDK_INT <= 23 || player == null) {
+//            initializePlayer();
+            if (playerView != null) {
+                playerView.onResume();
+            }
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
         if (Util.SDK_INT <= 23) {
+            if (playerView != null) {
+                playerView.onPause();
+            }
             releasePlayer();
         }
     }
@@ -86,6 +102,9 @@ public class StepDetailFragment extends Fragment {
     public void onStop() {
         super.onStop();
         if (Util.SDK_INT > 23) {
+            if (playerView != null) {
+                playerView.onPause();
+            }
             releasePlayer();
         }
     }
@@ -102,17 +121,19 @@ public class StepDetailFragment extends Fragment {
         if (player != null) {
             player.release();
             player = null;
+
             Timber.d("SimpleExoPlayer is released");
         }
     }
 
     private void initializePlayer(String videoUrl) {
         // Initialize the player
-        player = ExoPlayerFactory.newSimpleInstance(getActivity(), new DefaultTrackSelector());
+        player = ExoPlayerFactory.newSimpleInstance(getActivity());
 
-        // Initialize ExoPlayerView
-        PlayerView playerView = getActivity().findViewById(R.id.video_player);
+        // Bind the player to the view.
+        playerView = getActivity().findViewById(R.id.video_player);
         playerView.setPlayer(player);
+        playerView.requestFocus();
 
         // This is the MediaSource representing the media to be played.
         Uri uri = Uri.parse(videoUrl);
@@ -126,8 +147,10 @@ public class StepDetailFragment extends Fragment {
     }
 
     private MediaSource buildMediaSource(Uri uri) {
-        return new ExtractorMediaSource.Factory(
-                new DefaultHttpDataSourceFactory("bakingApp"))
+        // Produces DataSource instances through which media data is loaded.
+        DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(getActivity(),
+                Util.getUserAgent(getActivity(), "bakingApp"));
+        return new ExtractorMediaSource.Factory(dataSourceFactory)
                 .createMediaSource(uri);
     }
 }
