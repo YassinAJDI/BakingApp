@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.ajdi.yassin.bakingapp.R;
 import com.ajdi.yassin.bakingapp.data.model.Step;
+import com.ajdi.yassin.bakingapp.databinding.FragmentStepDetailBinding;
+import com.ajdi.yassin.bakingapp.utils.GlideApp;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
@@ -30,6 +32,7 @@ import timber.log.Timber;
  */
 public class StepDetailFragment extends Fragment {
 
+    private FragmentStepDetailBinding binding;
     private RecipeDetailViewModel mViewModel;
     private SimpleExoPlayer player;
     private PlayerView playerView;
@@ -45,7 +48,8 @@ public class StepDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_step_detail, container, false);
+        binding = FragmentStepDetailBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
@@ -112,9 +116,22 @@ public class StepDetailFragment extends Fragment {
     private void populateUi(Step step) {
         if (!step.getVideoURL().isEmpty()) {
             initializePlayer(step.getVideoURL());
+
+            binding.imageStep.setVisibility(View.GONE);
+        } else if (!step.getThumbnailURL().isEmpty()) {
+            ImageView imageView = getActivity().findViewById(R.id.image_step);
+            Timber.d(step.getThumbnailURL());
+            GlideApp.with(this)
+                    .load(step.getThumbnailURL())
+                    .into(imageView);
+
+            binding.videoPlayer.setVisibility(View.GONE);
+        } else {
+            binding.videoPlayer.setVisibility(View.GONE);
+            binding.imageStep.setVisibility(View.GONE);
         }
-        TextView textView = getActivity().findViewById(R.id.test);
-        textView.setText(step.getDescription());
+
+        binding.test.setText(step.getDescription());
     }
 
     private void releasePlayer() {
