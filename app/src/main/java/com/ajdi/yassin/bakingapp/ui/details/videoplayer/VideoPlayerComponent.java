@@ -7,6 +7,7 @@ import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
@@ -26,33 +27,34 @@ public class VideoPlayerComponent implements LifecycleObserver {
     private final Context context;
     private final PlayerView playerView;
     private SimpleExoPlayer player;
-    private final String videoUrl;
+    private PlayerState playerState;
+//    private final String videoUrl;
 
-    public VideoPlayerComponent(Context context, PlayerView playerView, String videoUrl) {
+    public VideoPlayerComponent(Context context, PlayerView playerView, PlayerState playerState) {
         this.context = context;
         this.playerView = playerView;
-        this.videoUrl = videoUrl;
+        this.playerState = playerState;
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     void onStart() {
         if (Util.SDK_INT > 23) {
-            Timber.d("onStart");
             initializePlayer();
             if (playerView != null) {
                 playerView.onResume();
             }
+            Timber.d("SimpleExoPlayer is started");
         }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     void onResume() {
         if (Util.SDK_INT <= 23 || player == null) {
-            Timber.d("onResume");
             initializePlayer();
             if (playerView != null) {
                 playerView.onResume();
             }
+            Timber.d("SimpleExoPlayer is resumed");
         }
     }
 
@@ -62,8 +64,8 @@ public class VideoPlayerComponent implements LifecycleObserver {
             if (playerView != null) {
                 playerView.onPause();
             }
-            Timber.d("onPause");
             releasePlayer();
+            Timber.d("SimpleExoPlayer is paused");
         }
     }
 
@@ -73,8 +75,8 @@ public class VideoPlayerComponent implements LifecycleObserver {
             if (playerView != null) {
                 playerView.onPause();
             }
-            Timber.d("onStop");
             releasePlayer();
+            Timber.d("SimpleExoPlayer is stopped");
         }
     }
 
@@ -89,7 +91,7 @@ public class VideoPlayerComponent implements LifecycleObserver {
 
     private void initializePlayer() {
         // Initialize the player
-        player = ExoPlayerFactory.newSimpleInstance(context);
+        player = ExoPlayerFactory.newSimpleInstance(context, new DefaultTrackSelector());
 
         // Bind the player to the view.
 //        playerView = getActivity().findViewById(R.id.video_player);
@@ -97,16 +99,17 @@ public class VideoPlayerComponent implements LifecycleObserver {
         playerView.requestFocus();
 
         // This is the MediaSource representing the media to be played.
-        Uri uri = Uri.parse(videoUrl);
+        Uri uri = Uri.parse(playerState.videoUrl);
         MediaSource mediaSource = buildMediaSource(uri);
 
         // Prepare the player with the source.
         player.prepare(mediaSource);
 
         // Start playback when media has buffered enough.
-        player.setPlayWhenReady(true);
+        player.setPlayWhenReady(playerState.whenReady);
+        player.seekTo(playerState.window, playerState.position);
 
-        Timber.d("SimpleExoPlayer is initialized");
+        Timber.d("SimpleExoPlayer created");
     }
 
     private MediaSource buildMediaSource(Uri uri) {

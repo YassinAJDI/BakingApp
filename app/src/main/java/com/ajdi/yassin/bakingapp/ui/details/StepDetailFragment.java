@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.ajdi.yassin.bakingapp.R;
 import com.ajdi.yassin.bakingapp.data.model.Step;
 import com.ajdi.yassin.bakingapp.databinding.FragmentStepDetailBinding;
+import com.ajdi.yassin.bakingapp.ui.details.videoplayer.PlayerState;
 import com.ajdi.yassin.bakingapp.ui.details.videoplayer.VideoPlayerComponent;
 import com.ajdi.yassin.bakingapp.utils.GlideApp;
 import com.google.android.exoplayer2.ui.PlayerView;
@@ -64,8 +65,10 @@ public class StepDetailFragment extends Fragment {
     private void populateUi(Step step) {
         if (!step.getVideoURL().isEmpty()) {
             PlayerView playerView = getActivity().findViewById(R.id.video_player);
+            PlayerState playerState =
+                    new PlayerState(0, 0, true, step.getVideoURL());
             getLifecycle().addObserver(
-                    new VideoPlayerComponent(getActivity(), playerView, step.getVideoURL()));
+                    new VideoPlayerComponent(getActivity(), playerView, playerState));
 
             binding.imageStep.setVisibility(View.GONE);
         } else if (!step.getThumbnailURL().isEmpty()) {
