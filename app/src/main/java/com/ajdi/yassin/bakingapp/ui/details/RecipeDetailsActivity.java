@@ -64,9 +64,9 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         if (mTwoPane) {
             return;
         }
-        RecipeDetailFragment discoverMoviesFragment = RecipeDetailFragment.newInstance();
+        RecipeDetailFragment recipeDetailFragment = RecipeDetailFragment.newInstance();
         ActivityUtils.replaceFragmentInActivity(
-                getSupportFragmentManager(), discoverMoviesFragment, R.id.fragment_recipe_detail);
+                getSupportFragmentManager(), recipeDetailFragment, R.id.fragment_recipe_detail);
     }
 
     public static RecipeDetailViewModel obtainViewModel(FragmentActivity activity) {

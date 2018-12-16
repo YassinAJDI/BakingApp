@@ -26,6 +26,7 @@ public class StepDetailFragment extends Fragment {
 
     private FragmentStepDetailBinding binding;
     private RecipeDetailViewModel mViewModel;
+//    public static final String EXTRA_STEP = "extra_step";
 
     public StepDetailFragment() {
         // Required empty public constructor
