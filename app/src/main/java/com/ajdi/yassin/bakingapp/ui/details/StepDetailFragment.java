@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.ajdi.yassin.bakingapp.R;
 import com.ajdi.yassin.bakingapp.data.model.Step;
 import com.ajdi.yassin.bakingapp.databinding.FragmentStepDetailBinding;
 import com.ajdi.yassin.bakingapp.ui.details.videoplayer.PlayerState;
@@ -19,7 +17,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import timber.log.Timber;
 
 /**
  * @author Yassin Ajdi
@@ -64,20 +61,16 @@ public class StepDetailFragment extends Fragment {
 
     private void populateUi(Step step) {
         if (!step.getVideoURL().isEmpty()) {
-            PlayerView playerView = getActivity().findViewById(R.id.video_player);
+            PlayerView playerView = binding.videoPlayer;
             PlayerState playerState =
                     new PlayerState(0, 0, true, step.getVideoURL());
             getLifecycle().addObserver(
                     new VideoPlayerComponent(getActivity(), playerView, playerState));
-
             binding.imageStep.setVisibility(View.GONE);
         } else if (!step.getThumbnailURL().isEmpty()) {
-            ImageView imageView = getActivity().findViewById(R.id.image_step);
-            Timber.d(step.getThumbnailURL());
             GlideApp.with(this)
                     .load(step.getThumbnailURL())
-                    .into(imageView);
-
+                    .into(binding.imageStep);
             binding.videoPlayer.setVisibility(View.GONE);
         } else {
             binding.videoPlayer.setVisibility(View.GONE);
