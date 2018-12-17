@@ -108,9 +108,6 @@ public class VideoPlayerComponent implements LifecycleObserver {
             Uri uri = Uri.parse(playerState.videoUrl);
             MediaSource mediaSource = buildMediaSource(uri);
 
-            // Prepare the player with the source.
-            player.prepare(mediaSource);
-
             // Start playback when media has buffered enough.
             player.setPlayWhenReady(playerState.whenReady);
             boolean haveResumePosition = playerState.window != C.INDEX_UNSET;
@@ -119,6 +116,7 @@ public class VideoPlayerComponent implements LifecycleObserver {
                 player.seekTo(playerState.window, playerState.position);
             }
 
+            player.prepare(mediaSource, !haveResumePosition, false);
             Timber.d("SimpleExoPlayer created");
         }
     }

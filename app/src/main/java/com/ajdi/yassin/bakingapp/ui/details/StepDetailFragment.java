@@ -25,13 +25,14 @@ import androidx.lifecycle.Observer;
  */
 public class StepDetailFragment extends Fragment {
 
-//    private static final String KEY_WINDOW = "window";
-//    private static final String KEY_POSITION = "position";
-//    private static final String KEY_AUTO_PLAY = "auto_play";
+    private static final String KEY_WINDOW = "window";
+    private static final String KEY_POSITION = "position";
+    private static final String KEY_AUTO_PLAY = "auto_play";
 //    public static final String STEP_DATA_EXTRA = "extra_step";
 
     private FragmentStepDetailBinding binding;
     private RecipeDetailViewModel mViewModel;
+    private PlayerState playerState;
 
     private boolean startAutoPlay;
     private int startWindow;
@@ -69,10 +70,21 @@ public class StepDetailFragment extends Fragment {
         });
 
         if (savedInstanceState != null) {
-
+            startAutoPlay = savedInstanceState.getBoolean(KEY_AUTO_PLAY);
+            startWindow = savedInstanceState.getInt(KEY_WINDOW);
+            startPosition = savedInstanceState.getLong(KEY_POSITION);
         } else {
             clearStartPosition();
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putBoolean(KEY_AUTO_PLAY, playerState.whenReady);
+        outState.putInt(KEY_WINDOW, playerState.window);
+        outState.putLong(KEY_POSITION, playerState.position);
+
+        super.onSaveInstanceState(outState);
     }
 
     private void clearStartPosition() {
@@ -84,8 +96,7 @@ public class StepDetailFragment extends Fragment {
     private void populateUi(Step step) {
         if (!step.getVideoURL().isEmpty()) {
             PlayerView playerView = binding.videoPlayer;
-            PlayerState playerState =
-                    new PlayerState(startWindow, startPosition, startAutoPlay, step.getVideoURL());
+            playerState = new PlayerState(startWindow, startPosition, startAutoPlay, step.getVideoURL());
             getLifecycle().addObserver(
                     new VideoPlayerComponent(getActivity(), playerView, playerState));
             binding.imageStep.setVisibility(View.GONE);
