@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.ajdi.yassin.bakingapp.R;
 import com.ajdi.yassin.bakingapp.data.model.Recipe;
+import com.ajdi.yassin.bakingapp.data.model.Step;
 import com.ajdi.yassin.bakingapp.utils.ActivityUtils;
 
 import androidx.annotation.Nullable;
@@ -51,8 +52,8 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             @Override
             public void onChanged(Integer position) {
                 if (mTwoPane) {
-                    mViewModel.setCurrentStep(position);
-                    StepDetailFragment fragment = StepDetailFragment.newInstance();
+                    Step step = mViewModel.getCurrentStep().getValue();
+                    StepDetailFragment fragment = StepDetailFragment.newInstance(step);
                     ActivityUtils.replaceFragmentInActivity(
                             getSupportFragmentManager(), fragment, R.id.fragment_step_detail);
                 }

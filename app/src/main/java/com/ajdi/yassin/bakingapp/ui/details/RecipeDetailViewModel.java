@@ -33,11 +33,12 @@ public class RecipeDetailViewModel extends ViewModel {
 //        setRecipeLiveData(recipe);
         setIngredients(recipe.getIngredients());
         setSteps(recipe.getSteps());
-        setCurrentStep(0);
+//        setCurrentStep(0);
     }
 
     public void setCurrentStep(int position) {
         currentStep.setValue(stepsList.getValue().get(position));
+        openStepDetailEvent.setValue(position);
     }
 
     public LiveData<Step> getCurrentStep() {
