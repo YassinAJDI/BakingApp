@@ -3,6 +3,9 @@ package com.ajdi.yassin.bakingapp.ui.details.videoplayer;
 import android.content.Context;
 import android.net.Uri;
 
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.DefaultLoadControl;
+import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
@@ -28,7 +31,6 @@ public class VideoPlayerComponent implements LifecycleObserver {
     private final PlayerView playerView;
     private SimpleExoPlayer player;
     private PlayerState playerState;
-//    private final String videoUrl;
 
     public VideoPlayerComponent(Context context, PlayerView playerView, PlayerState playerState) {
         this.context = context;
@@ -82,6 +84,7 @@ public class VideoPlayerComponent implements LifecycleObserver {
 
     private void releasePlayer() {
         if (player != null) {
+            updateStartPosition();
             player.release();
             player = null;
 
@@ -90,26 +93,34 @@ public class VideoPlayerComponent implements LifecycleObserver {
     }
 
     private void initializePlayer() {
-        // Initialize the player
-        player = ExoPlayerFactory.newSimpleInstance(context, new DefaultTrackSelector());
+        if (player == null) {
+            // Initialize the player
+            player = ExoPlayerFactory.newSimpleInstance(context,
+                    new DefaultRenderersFactory(context),
+                    new DefaultTrackSelector(),
+                    new DefaultLoadControl());
 
-        // Bind the player to the view.
-//        playerView = getActivity().findViewById(R.id.video_player);
-        playerView.setPlayer(player);
-        playerView.requestFocus();
+            // Bind the player to the view.
+            playerView.setPlayer(player);
+            playerView.requestFocus();
 
-        // This is the MediaSource representing the media to be played.
-        Uri uri = Uri.parse(playerState.videoUrl);
-        MediaSource mediaSource = buildMediaSource(uri);
+            // This is the MediaSource representing the media to be played.
+            Uri uri = Uri.parse(playerState.videoUrl);
+            MediaSource mediaSource = buildMediaSource(uri);
 
-        // Prepare the player with the source.
-        player.prepare(mediaSource);
+            // Prepare the player with the source.
+            player.prepare(mediaSource);
 
-        // Start playback when media has buffered enough.
-        player.setPlayWhenReady(playerState.whenReady);
-        player.seekTo(playerState.window, playerState.position);
+            // Start playback when media has buffered enough.
+            player.setPlayWhenReady(playerState.whenReady);
+            boolean haveResumePosition = playerState.window != C.INDEX_UNSET;
+            if (haveResumePosition) {
+                Timber.d("Have Resume position true! " + playerState.window);
+                player.seekTo(playerState.window, playerState.position);
+            }
 
-        Timber.d("SimpleExoPlayer created");
+            Timber.d("SimpleExoPlayer created");
+        }
     }
 
     private MediaSource buildMediaSource(Uri uri) {
@@ -118,6 +129,14 @@ public class VideoPlayerComponent implements LifecycleObserver {
                 Util.getUserAgent(context, "bakingApp"));
         return new ExtractorMediaSource.Factory(dataSourceFactory)
                 .createMediaSource(uri);
+    }
+
+    private void updateStartPosition() {
+        if (player != null) {
+            playerState.whenReady = player.getPlayWhenReady();
+            playerState.window = player.getCurrentWindowIndex();
+            playerState.position = Math.max(0, player.getContentPosition());
+        }
     }
 
 }

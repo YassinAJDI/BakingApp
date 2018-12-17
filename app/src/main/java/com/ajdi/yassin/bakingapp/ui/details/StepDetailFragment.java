@@ -11,6 +11,7 @@ import com.ajdi.yassin.bakingapp.databinding.FragmentStepDetailBinding;
 import com.ajdi.yassin.bakingapp.ui.details.videoplayer.PlayerState;
 import com.ajdi.yassin.bakingapp.ui.details.videoplayer.VideoPlayerComponent;
 import com.ajdi.yassin.bakingapp.utils.GlideApp;
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ui.PlayerView;
 
 import androidx.annotation.NonNull;
@@ -24,9 +25,17 @@ import androidx.lifecycle.Observer;
  */
 public class StepDetailFragment extends Fragment {
 
+//    private static final String KEY_WINDOW = "window";
+//    private static final String KEY_POSITION = "position";
+//    private static final String KEY_AUTO_PLAY = "auto_play";
+//    public static final String STEP_DATA_EXTRA = "extra_step";
+
     private FragmentStepDetailBinding binding;
     private RecipeDetailViewModel mViewModel;
-//    public static final String EXTRA_STEP = "extra_step";
+
+    private boolean startAutoPlay;
+    private int startWindow;
+    private long startPosition;
 
     public StepDetailFragment() {
         // Required empty public constructor
@@ -58,13 +67,25 @@ public class StepDetailFragment extends Fragment {
                 }
             }
         });
+
+        if (savedInstanceState != null) {
+
+        } else {
+            clearStartPosition();
+        }
+    }
+
+    private void clearStartPosition() {
+        startAutoPlay = true;
+        startWindow = C.INDEX_UNSET;
+        startPosition = C.TIME_UNSET;
     }
 
     private void populateUi(Step step) {
         if (!step.getVideoURL().isEmpty()) {
             PlayerView playerView = binding.videoPlayer;
             PlayerState playerState =
-                    new PlayerState(0, 0, true, step.getVideoURL());
+                    new PlayerState(startWindow, startPosition, startAutoPlay, step.getVideoURL());
             getLifecycle().addObserver(
                     new VideoPlayerComponent(getActivity(), playerView, playerState));
             binding.imageStep.setVisibility(View.GONE);
@@ -79,5 +100,6 @@ public class StepDetailFragment extends Fragment {
         }
 
         binding.test.setText(step.getDescription());
+        binding.executePendingBindings();
     }
 }
