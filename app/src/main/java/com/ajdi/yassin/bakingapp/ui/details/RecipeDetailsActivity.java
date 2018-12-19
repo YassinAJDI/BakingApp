@@ -1,11 +1,18 @@
 package com.ajdi.yassin.bakingapp.ui.details;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.ajdi.yassin.bakingapp.R;
+import com.ajdi.yassin.bakingapp.RecipeWidgetProvider;
 import com.ajdi.yassin.bakingapp.data.model.Recipe;
 import com.ajdi.yassin.bakingapp.data.model.Step;
 import com.ajdi.yassin.bakingapp.utils.ActivityUtils;
+import com.ajdi.yassin.bakingapp.utils.Constants;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +52,8 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             setupViewFragment();
             mViewModel.init(recipe);
+            saveRecipeDataToSharedPreferences(recipe);
+            refreshWidgetIngredientsList();
         }
 
         // observe steps list click event
@@ -59,6 +68,24 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void refreshWidgetIngredientsList() {
+        Intent intent = new Intent(this, RecipeWidgetProvider.class);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(
+                new ComponentName(getApplication(), RecipeWidgetProvider.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+        sendBroadcast(intent);
+    }
+
+    private void saveRecipeDataToSharedPreferences(Recipe recipe) {
+        SharedPreferences sharedpreferences = getSharedPreferences(Constants.MY_PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(getString(R.string.recipe_name), recipe.getName());
+        editor.putLong(getString(R.string.recipe_id), recipe.getId());
+        editor.putString(getString(R.string.ingredients), recipe.getIngredients().get(0).getIngredient());
+        editor.apply();
     }
 
     private void setupViewFragment() {
