@@ -29,10 +29,11 @@ public class StepDetailFragment extends Fragment {
     private static final String KEY_POSITION = "position";
     private static final String KEY_AUTO_PLAY = "auto_play";
     public static final String KEY_STEP_DATA = "step_data";
+    private static final String KEY_PLAYER_STATE = "KEY_PLAYER_STATE";
 
     private FragmentStepDetailBinding binding;
     private RecipeDetailViewModel mViewModel;
-    private PlayerState playerState;
+    private PlayerState playerState = new PlayerState();
     private Step step;
 
     private boolean startAutoPlay;
@@ -65,9 +66,10 @@ public class StepDetailFragment extends Fragment {
 
         if (savedInstanceState != null) {
             step = savedInstanceState.getParcelable(KEY_STEP_DATA);
-            startAutoPlay = savedInstanceState.getBoolean(KEY_AUTO_PLAY);
-            startWindow = savedInstanceState.getInt(KEY_WINDOW);
-            startPosition = savedInstanceState.getLong(KEY_POSITION);
+            playerState = savedInstanceState.getParcelable(KEY_PLAYER_STATE);
+//            playerState.whenReady = savedInstanceState.getBoolean(KEY_AUTO_PLAY);
+//            playerState.window = savedInstanceState.getInt(KEY_WINDOW);
+//            playerState.position = savedInstanceState.getLong(KEY_POSITION);
         } else {
             step = getArguments().getParcelable(KEY_STEP_DATA);
             clearStartPosition();
@@ -78,23 +80,25 @@ public class StepDetailFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putParcelable(KEY_STEP_DATA, step);
-        outState.putBoolean(KEY_AUTO_PLAY, playerState.whenReady);
-        outState.putInt(KEY_WINDOW, playerState.window);
-        outState.putLong(KEY_POSITION, playerState.position);
+        outState.putParcelable(KEY_PLAYER_STATE, playerState);
+//        outState.putBoolean(KEY_AUTO_PLAY, playerState.whenReady);
+//        outState.putInt(KEY_WINDOW, playerState.window);
+//        outState.putLong(KEY_POSITION, playerState.position);
 
         super.onSaveInstanceState(outState);
     }
 
     private void clearStartPosition() {
-        startAutoPlay = true;
-        startWindow = C.INDEX_UNSET;
-        startPosition = C.TIME_UNSET;
+        playerState.whenReady = true;
+        playerState.window = C.INDEX_UNSET;
+        playerState.position = C.TIME_UNSET;
     }
 
     private void populateUi() {
         if (!step.getVideoURL().isEmpty()) {
             PlayerView playerView = binding.videoPlayer;
-            playerState = new PlayerState(startWindow, startPosition, startAutoPlay, step.getVideoURL());
+            playerState.videoUrl = step.getVideoURL();
+//            playerState = new PlayerState(startWindow, startPosition, startAutoPlay, step.getVideoURL());
             getLifecycle().addObserver(
                     new VideoPlayerComponent(getActivity(), playerView, playerState));
             binding.imageStep.setVisibility(View.GONE);
