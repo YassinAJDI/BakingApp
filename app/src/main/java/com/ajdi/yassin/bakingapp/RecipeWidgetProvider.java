@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 
+import com.ajdi.yassin.bakingapp.ui.details.RecipeDetailsActivity;
 import com.ajdi.yassin.bakingapp.ui.list.RecipeListActivity;
 import com.ajdi.yassin.bakingapp.utils.Constants;
 
@@ -28,21 +29,25 @@ public class RecipeWidgetProvider extends AppWidgetProvider {
         SharedPreferences prefs = context.getSharedPreferences(Constants.MY_PREFS_NAME, MODE_PRIVATE);
         String recipeName = prefs.getString(context.getString(R.string.recipe_name), "No Recipe Added");
         String ingredients = prefs.getString(context.getString(R.string.ingredients), "Nothing!!");
-
+        long recipeId = prefs.getLong(context.getString(R.string.recipe_id), -1);
 
         // Update remote views
         views.setTextViewText(R.id.appwidget_recipe_name, recipeName);
         views.setTextViewText(R.id.appwidget_ingredient, ingredients);
 
-        // TODO: 12/19/2018 test if first time then dont add pending intent
         // Add pending intent to this widget item
         // When widget is clicked open recipe list activity
-        Intent intent = new Intent(context, RecipeListActivity.class);
+        Intent intent;
+        if (recipeId >= 0) {
+            intent = new Intent(context, RecipeDetailsActivity.class);
+            intent.putExtra(context.getString(R.string.recipe_id), recipeId);
+        } else {
+            intent = new Intent(context, RecipeListActivity.class);
+        }
 //        intent.setAction()
 //        int flags = Intent.FLAG_ACTIVITY_NEW_TASK;
         PendingIntent pendingIntent = PendingIntent.getActivity(context, appWidgetId, intent, 0);
-//        views.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
-
+        views.setOnClickPendingIntent(R.id.widget_container, pendingIntent);
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
