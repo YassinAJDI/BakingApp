@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp.ui.details;
+package com.ajdi.yassin.bakingapp.ui.details.stepdetail;
 
 
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.ajdi.yassin.bakingapp.data.model.Step;
 import com.ajdi.yassin.bakingapp.databinding.FragmentStepDetailBinding;
+import com.ajdi.yassin.bakingapp.ui.details.RecipeDetailViewModel;
 import com.ajdi.yassin.bakingapp.ui.details.videoplayer.PlayerState;
 import com.ajdi.yassin.bakingapp.ui.details.videoplayer.VideoPlayerComponent;
 import com.ajdi.yassin.bakingapp.utils.GlideApp;

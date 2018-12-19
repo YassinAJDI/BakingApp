@@ -11,6 +11,8 @@ import com.ajdi.yassin.bakingapp.R;
 import com.ajdi.yassin.bakingapp.RecipeWidgetProvider;
 import com.ajdi.yassin.bakingapp.data.model.Recipe;
 import com.ajdi.yassin.bakingapp.data.model.Step;
+import com.ajdi.yassin.bakingapp.ui.details.stepdetail.StepDetailActivity;
+import com.ajdi.yassin.bakingapp.ui.details.stepdetail.StepDetailFragment;
 import com.ajdi.yassin.bakingapp.utils.ActivityUtils;
 import com.ajdi.yassin.bakingapp.utils.Constants;
 
@@ -60,11 +62,15 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         mViewModel.getOpenStepDetailEvent().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer position) {
+                Step step = mViewModel.getCurrentStep().getValue();
                 if (mTwoPane) {
-                    Step step = mViewModel.getCurrentStep().getValue();
                     StepDetailFragment fragment = StepDetailFragment.newInstance(step);
                     ActivityUtils.replaceFragmentInActivity(
                             getSupportFragmentManager(), fragment, R.id.fragment_step_detail);
+                } else {
+                    Intent intent = new Intent(RecipeDetailsActivity.this, StepDetailActivity.class);
+                    intent.putExtra(StepDetailActivity.EXTRA_STEP, step);
+                    startActivity(intent);
                 }
             }
         });
@@ -75,7 +81,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(
                 new ComponentName(getApplication(), RecipeWidgetProvider.class));
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         sendBroadcast(intent);
     }
 

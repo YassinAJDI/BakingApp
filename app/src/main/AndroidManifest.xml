@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
         <activity android:name=".ui.list.RecipeListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.details.RecipeDetailsActivity" />
+        <activity android:name=".ui.details.stepdetail.StepDetailActivity"></activity>
 
         <receiver android:name=".RecipeWidgetProvider">
             <intent-filter>
@@ -34,6 +34,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/recipe_widget_info" />
         </receiver>
-
     </application>
+
 </manifest>
