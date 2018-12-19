@@ -53,8 +53,8 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
         mViewModel = obtainViewModel(this);
         if (savedInstanceState == null) {
-            setupViewFragment();
             mViewModel.init(recipe);
+            setupViewFragment();
             saveRecipeDataToSharedPreferences(recipe);
             refreshWidgetIngredientsList();
         }
@@ -99,9 +99,9 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         if (mTwoPane) {
             return;
         }
-        RecipeDetailFragment recipeDetailFragment = RecipeDetailFragment.newInstance();
-        ActivityUtils.replaceFragmentInActivity(
-                getSupportFragmentManager(), recipeDetailFragment, R.id.fragment_recipe_detail);
+//        RecipeDetailFragment recipeDetailFragment = RecipeDetailFragment.newInstance();
+//        ActivityUtils.replaceFragmentInActivity(
+//                getSupportFragmentManager(), recipeDetailFragment, R.id.fragment_recipe_detail);
     }
 
     public static RecipeDetailViewModel obtainViewModel(FragmentActivity activity) {

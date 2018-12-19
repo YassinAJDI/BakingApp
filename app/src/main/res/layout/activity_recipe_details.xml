@@ -4,8 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
+    <fragment
         android:id="@+id/fragment_recipe_detail"
+        android:name="com.ajdi.yassin.bakingapp.ui.details.RecipeDetailFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
