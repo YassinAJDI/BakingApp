@@ -113,21 +113,22 @@ public class StepDetailFragment extends Fragment {
         Timber.d("populateUi");
         if (!step.getVideoURL().isEmpty()) {
             // initialize and show video player
-            playerView = binding.videoPlayer;
+            playerView = binding.stepDetailContent.videoPlayer;
             playerState.videoUrl = step.getVideoURL();
             getLifecycle().addObserver(
                     new VideoPlayerComponent(getActivity(), playerView, playerState));
 
             if (isLandscape) {
-                hideShow(binding.stepDetailContainer, false);
+                hideShow(binding.stepDetailContent.stepDetailContainer, false);
                 expandVideoView();
                 hideSystemUi();
             }
 
 //            playerState = new PlayerState(startWindow, startPosition, startAutoPlay, step.getVideoURL());
-            hideShow(binding.videoPlayer, true);
+            hideShow(binding.stepDetailContent.videoPlayer, true);
+
         } else {
-            hideShow(binding.videoPlayer, false);
+            hideShow(binding.stepDetailContent.videoPlayer, false);
         }
 
         if (!step.getThumbnailURL().isEmpty()) {
@@ -135,14 +136,14 @@ public class StepDetailFragment extends Fragment {
             GlideApp.with(this)
                     .load(step.getThumbnailURL())
                     .placeholder(R.color.colorAccent)
-                    .into(binding.imageStep);
-            hideShow(binding.imageStep, false);
+                    .into(binding.stepDetailContent.imageStep);
+            hideShow(binding.stepDetailContent.imageStep, false);
         } else {
-            hideShow(binding.imageStep, false);
+            hideShow(binding.stepDetailContent.imageStep, false);
         }
 
-        binding.test.setText(step.getDescription());
-        binding.executePendingBindings();
+        binding.stepDetailContent.test.setText(step.getDescription());
+        binding.stepDetailContent.executePendingBindings();
     }
 
     private void expandVideoView() {
