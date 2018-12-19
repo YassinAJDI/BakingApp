@@ -23,7 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.details.RecipeDetailsActivity" />
-        <activity android:name=".ui.details.stepdetail.StepDetailActivity"></activity>
+        <activity
+            android:name=".ui.details.stepdetail.StepDetailActivity" />
 
         <receiver android:name=".RecipeWidgetProvider">
             <intent-filter>
