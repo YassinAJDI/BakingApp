@@ -44,6 +44,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             closeOnError();
             return;
         }
+        setTitle(recipe.getName());
 
         // determine which layout we are in (tablet or phone)
         if (findViewById(R.id.fragment_step_detail) != null) {

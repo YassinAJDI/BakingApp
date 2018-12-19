@@ -18,6 +18,7 @@ public class StepDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_step_detail);
 
         Step step = getIntent().getParcelableExtra(EXTRA_STEP);
+        setTitle("Step Detail");
         if (savedInstanceState == null) {
             setupViewFragment(step);
         }
