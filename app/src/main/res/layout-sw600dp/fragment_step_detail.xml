@@ -7,6 +7,6 @@
 
         <include
             android:id="@+id/step_detail_content"
-            layout="@layout/step_detail_content" />
+            layout="@layout/partial_step_detail_content" />
     </FrameLayout>
 </layout>
