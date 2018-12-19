@@ -21,6 +21,8 @@ import com.google.android.exoplayer2.ui.PlayerView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import timber.log.Timber;
 
@@ -119,14 +121,14 @@ public class StepDetailFragment extends Fragment {
                     new VideoPlayerComponent(getActivity(), playerView, playerState));
 
             if (isLandscape) {
-                hideShow(binding.stepDetailContent.stepDetailContainer, false);
+                hideShow(binding.stepDetailContent.stepDetailsHolder, false);
+                hideShow(binding.navigationButtonsContainer, false);
+                removeConstraint();
                 expandVideoView();
                 hideSystemUi();
             }
 
-//            playerState = new PlayerState(startWindow, startPosition, startAutoPlay, step.getVideoURL());
             hideShow(binding.stepDetailContent.videoPlayer, true);
-
         } else {
             hideShow(binding.stepDetailContent.videoPlayer, false);
         }
@@ -146,10 +148,20 @@ public class StepDetailFragment extends Fragment {
         binding.stepDetailContent.executePendingBindings();
     }
 
+    private void removeConstraint() {
+        ConstraintSet set = new ConstraintSet();
+        ConstraintLayout layout = binding.stepDetailsContainer;
+        set.clone(layout);
+        set.clear(R.id.step_detail_content, ConstraintSet.BOTTOM);
+        set.connect(R.id.step_detail_content, ConstraintSet.BOTTOM, R.id.step_details_container, ConstraintSet.BOTTOM);
+        set.applyTo(layout);
+    }
+
     private void expandVideoView() {
         playerView.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
         playerView.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
         playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FILL);
+
     }
 
     private void hideShow(View view, boolean show) {

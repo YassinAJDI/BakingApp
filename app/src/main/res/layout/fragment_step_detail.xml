@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/step_details_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -24,25 +25,32 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_end="100dp" />
 
-        <Button
-            android:id="@+id/button_prev"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:id="@+id/navigation_buttons_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Prev"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
-        <Button
-            android:id="@+id/button_next"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="Next"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3">
+
+            <Button
+                android:id="@+id/button_prev"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Prev" />
+
+            <Button
+                android:id="@+id/button_next"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Next" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
