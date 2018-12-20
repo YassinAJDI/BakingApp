@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 /**
  * @author Yassin Ajdi
@@ -15,6 +16,9 @@ import androidx.room.Ignore;
  */
 @Entity(tableName = "ingredient")
 public class Ingredient implements Parcelable {
+
+    @PrimaryKey(autoGenerate = true)
+    private long id;
 
     @SerializedName("quantity")
     @Expose
@@ -28,8 +32,12 @@ public class Ingredient implements Parcelable {
     @Expose
     private String ingredient;
 
+    public Ingredient() {
+    }
+
     @Ignore
     protected Ingredient(Parcel in) {
+        id = in.readLong();
         quantity = in.readDouble();
         measure = in.readString();
         ingredient = in.readString();
@@ -37,6 +45,7 @@ public class Ingredient implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
         dest.writeDouble(quantity);
         dest.writeString(measure);
         dest.writeString(ingredient);
@@ -83,4 +92,11 @@ public class Ingredient implements Parcelable {
         this.ingredient = ingredient;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

@@ -52,7 +52,7 @@ public class RecipeListActivity extends AppCompatActivity {
     }
 
     private RecipeListViewModel obtainViewModel() {
-        ViewModelFactory factory = Injection.provideViewModelFactory();
+        ViewModelFactory factory = Injection.provideViewModelFactory(this);
         return ViewModelProviders.of(this, factory).get(RecipeListViewModel.class);
     }
 }

@@ -6,7 +6,7 @@
 
         <variable
             name="ingredient"
-            type="com.ajdi.yassin.bakingapp.data.model.Ingredient" />
+            type="com.ajdi.yassin.bakingapp.data.local.model.Ingredient" />
 
     </data>
 

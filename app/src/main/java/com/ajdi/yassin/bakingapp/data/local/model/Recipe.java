@@ -48,6 +48,9 @@ public class Recipe implements Parcelable {
     @Expose
     private String image;
 
+    public Recipe() {
+    }
+
     @Ignore
     protected Recipe(Parcel in) {
         id = in.readLong();

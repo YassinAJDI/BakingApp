@@ -9,6 +9,7 @@ import com.google.gson.annotations.SerializedName;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 /**
  * @author Yassin Ajdi
@@ -18,6 +19,7 @@ import androidx.room.Ignore;
 public class Step implements Parcelable {
 
     @NonNull
+    @PrimaryKey
     @SerializedName("id")
     @Expose
     private long id;
@@ -37,6 +39,9 @@ public class Step implements Parcelable {
     @SerializedName("thumbnailURL")
     @Expose
     private String thumbnailURL;
+
+    public Step() {
+    }
 
     @Ignore
     protected Step(Parcel in) {
