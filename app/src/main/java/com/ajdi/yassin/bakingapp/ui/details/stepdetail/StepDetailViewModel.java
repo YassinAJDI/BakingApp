@@ -18,35 +18,12 @@ public class StepDetailViewModel extends ViewModel {
     private int currentPosition;
     private final SingleLiveEvent<Step> navigateToStepDetail = new SingleLiveEvent<>();
 
-    public StepDetailViewModel() {
-        Timber.d("StepDetailViewModel()");
-        // update current step when current position changes
-//        currentStep = Transformations.map(currentPosition, new Function<Integer, Step>() {
-//            @Override
-//            public Step apply(Integer input) {
-//                Timber.d("Transformations");
-//                return null;
-//            }
-//        });
-
-//        navigateToStepDetail = Transformations.map(currentPosition, new Function<Integer, Step>() {
-//            @Override
-//            public Step apply(Integer input) {
-//                return null;
-//            }
-//        });
-    }
-
     public void init(List<Step> steps, int position) {
         Timber.d("Initializing viewModel");
 
         stepsList = steps;
         setCurrentPosition(position);
     }
-
-//    public LiveData<Step> getCurrentStep() {
-//        return currentStep;
-//    }
 
     public void setCurrentPosition(int position) {
         currentPosition = position;
