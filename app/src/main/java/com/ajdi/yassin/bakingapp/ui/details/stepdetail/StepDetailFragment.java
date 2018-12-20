@@ -144,19 +144,33 @@ public class StepDetailFragment extends Fragment {
             hideShow(binding.stepDetailContent.imageStep, false);
         }
 
-        binding.buttonNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mViewModel.nextStep();
+        if (!isLandscape) {
+            if (mViewModel.hasNext()) {
+                hideShow(binding.buttonNext, true);
+            } else {
+                hideShow(binding.buttonNext, false);
             }
-        });
 
-        binding.buttonPrev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mViewModel.previousStep();
+            if (mViewModel.hasPrevious()) {
+                hideShow(binding.buttonPrev, true);
+            } else {
+                hideShow(binding.buttonPrev, false);
             }
-        });
+
+            // click events
+            binding.buttonNext.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mViewModel.nextStep();
+                }
+            });
+            binding.buttonPrev.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mViewModel.previousStep();
+                }
+            });
+        }
 
         binding.stepDetailContent.test.setText(step.getDescription());
         binding.stepDetailContent.executePendingBindings();
