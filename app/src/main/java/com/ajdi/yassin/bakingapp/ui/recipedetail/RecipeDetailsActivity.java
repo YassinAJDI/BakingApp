@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.RemoteViews;
 
 import com.ajdi.yassin.bakingapp.R;
 import com.ajdi.yassin.bakingapp.data.local.model.Recipe;
@@ -60,7 +61,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             mViewModel.init(recipe);
             setupViewFragment();
             saveRecipeDataToSharedPreferences(recipe);
-            refreshWidgetIngredientsList();
+            refreshWidgetIngredientsList(recipe);
         }
 
         // observe steps list click event
@@ -84,18 +85,17 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         });
     }
 
-    private void refreshWidgetIngredientsList() {
+    private void refreshWidgetIngredientsList(Recipe recipe) {
         // refresh ingredients list
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplication());
         int ids[] = appWidgetManager.getAppWidgetIds(
                 new ComponentName(getApplication(), RecipeWidgetProvider.class));
         appWidgetManager.notifyAppWidgetViewDataChanged(ids, R.id.widget_list);
 
-        // we sent update intent to update widget recipe name
-        Intent intent = new Intent(this, RecipeWidgetProvider.class);
-        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
-        sendBroadcast(intent);
+        // partially update widget recipe name so we don't have to recreate widget layout each time
+        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.widget_recipe_ingredients);
+        remoteViews.setTextViewText(R.id.widget_recipe_name, recipe.getName());
+        appWidgetManager.partiallyUpdateAppWidget(ids, remoteViews);
     }
 
     private void saveRecipeDataToSharedPreferences(Recipe recipe) {
