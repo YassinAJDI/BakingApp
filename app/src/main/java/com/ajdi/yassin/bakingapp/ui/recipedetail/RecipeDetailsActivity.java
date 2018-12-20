@@ -85,15 +85,17 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     }
 
     private void refreshWidgetIngredientsList() {
-//        Intent intent = new Intent(this, RecipeWidgetProvider.class);
-//        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        // refresh ingredients list
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplication());
         int ids[] = appWidgetManager.getAppWidgetIds(
                 new ComponentName(getApplication(), RecipeWidgetProvider.class));
         appWidgetManager.notifyAppWidgetViewDataChanged(ids, R.id.widget_list);
 
-//        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
-//        sendBroadcast(intent);
+        // we sent update intent to update widget recipe name
+        Intent intent = new Intent(this, RecipeWidgetProvider.class);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+        sendBroadcast(intent);
     }
 
     private void saveRecipeDataToSharedPreferences(Recipe recipe) {
@@ -101,7 +103,6 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(getString(R.string.recipe_name), recipe.getName());
         editor.putLong(getString(R.string.recipe_id), recipe.getId());
-        editor.putString(getString(R.string.ingredients), recipe.getIngredients().get(0).getIngredient());
         editor.apply();
     }
 

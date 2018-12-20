@@ -52,9 +52,14 @@ public class RecipeRepository {
         return mRecipesDatabase.ingredientsDao().getAllIngredients();
     }
 
-    public void saveRecipe(Recipe recipe) {
-        mRecipesDatabase.recipesDao().insertRecipe(recipe);
-        insertIngredients(recipe.getIngredients(), recipe.getId());
+    public void saveRecipe(final Recipe recipe) {
+        mExecutors.diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                mRecipesDatabase.recipesDao().insertRecipe(recipe);
+                insertIngredients(recipe.getIngredients(), recipe.getId());
+            }
+        });
     }
 
     private void insertIngredients(List<Ingredient> ingredients, long recipeId) {
