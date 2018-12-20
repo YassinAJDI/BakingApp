@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import com.ajdi.yassin.bakingapp.R;
 import com.ajdi.yassin.bakingapp.data.model.Step;
 import com.ajdi.yassin.bakingapp.databinding.FragmentStepDetailBinding;
-import com.ajdi.yassin.bakingapp.ui.details.RecipeDetailViewModel;
 import com.ajdi.yassin.bakingapp.ui.details.videoplayer.PlayerState;
 import com.ajdi.yassin.bakingapp.ui.details.videoplayer.VideoPlayerComponent;
 import com.ajdi.yassin.bakingapp.utils.GlideApp;
@@ -39,7 +38,7 @@ public class StepDetailFragment extends Fragment {
     private static final String KEY_PLAYER_STATE = "KEY_PLAYER_STATE";
 
     private FragmentStepDetailBinding binding;
-    private RecipeDetailViewModel mViewModel;
+    private StepDetailViewModel mViewModel;
     private PlayerView playerView;
     private PlayerState playerState = new PlayerState();
     private Step step;
@@ -79,7 +78,8 @@ public class StepDetailFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        mViewModel = RecipeDetailsActivity.obtainViewModel(getActivity());
+        mViewModel = StepDetailActivity.obtainViewModel(getActivity());
+
         Timber.d("onActivityCreated");
         if (savedInstanceState != null) {
             step = savedInstanceState.getParcelable(KEY_STEP_DATA);
@@ -144,8 +144,23 @@ public class StepDetailFragment extends Fragment {
             hideShow(binding.stepDetailContent.imageStep, false);
         }
 
+        binding.buttonNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewModel.nextStep();
+            }
+        });
+
+        binding.buttonPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewModel.previousStep();
+            }
+        });
+
         binding.stepDetailContent.test.setText(step.getDescription());
         binding.stepDetailContent.executePendingBindings();
+        binding.executePendingBindings();
     }
 
     private void removeConstraint() {

@@ -16,6 +16,8 @@ import com.ajdi.yassin.bakingapp.ui.details.stepdetail.StepDetailFragment;
 import com.ajdi.yassin.bakingapp.utils.ActivityUtils;
 import com.ajdi.yassin.bakingapp.utils.Constants;
 
+import java.util.ArrayList;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
@@ -39,7 +41,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_details);
 
-        Recipe recipe = getIntent().getParcelableExtra(EXTRA_RECIPE_DATA);
+        final Recipe recipe = getIntent().getParcelableExtra(EXTRA_RECIPE_DATA);
         if (recipe == null) {
             closeOnError();
             return;
@@ -69,8 +71,11 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                     ActivityUtils.replaceFragmentInActivity(
                             getSupportFragmentManager(), fragment, R.id.fragment_step_detail);
                 } else {
+                    ArrayList<Step> steps = new ArrayList<>(recipe.getSteps());
                     Intent intent = new Intent(RecipeDetailsActivity.this, StepDetailActivity.class);
-                    intent.putExtra(StepDetailActivity.EXTRA_STEP, step);
+//                    intent.putExtra(StepDetailActivity.EXTRA_STEP, step);
+                    intent.putParcelableArrayListExtra(StepDetailActivity.EXTRA_STEP_LIST, steps);
+                    intent.putExtra(StepDetailActivity.EXTRA_POSITION, position);
                     startActivity(intent);
                 }
             }
