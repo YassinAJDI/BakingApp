@@ -1,5 +1,6 @@
 package com.ajdi.yassin.bakingapp.ui.recipedetail;
 
+import com.ajdi.yassin.bakingapp.data.RecipeRepository;
 import com.ajdi.yassin.bakingapp.data.local.model.Ingredient;
 import com.ajdi.yassin.bakingapp.data.local.model.Recipe;
 import com.ajdi.yassin.bakingapp.data.local.model.Step;
@@ -28,8 +29,17 @@ public class RecipeDetailViewModel extends ViewModel {
 
     private final SingleLiveEvent<Integer> openStepDetailEvent = new SingleLiveEvent<>();
 
+    private RecipeRepository repository;
+
+    public RecipeDetailViewModel(RecipeRepository repository) {
+        this.repository = repository;
+    }
+
     public void init(Recipe recipe) {
         Timber.d("Initializing viewModel");
+
+        repository.saveRecipe(recipe);
+
 //        setRecipeLiveData(recipe);
         setIngredients(recipe.getIngredients());
         setSteps(recipe.getSteps());

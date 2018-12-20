@@ -1,6 +1,7 @@
 package com.ajdi.yassin.bakingapp.utils;
 
 import com.ajdi.yassin.bakingapp.data.RecipeRepository;
+import com.ajdi.yassin.bakingapp.ui.recipedetail.RecipeDetailViewModel;
 import com.ajdi.yassin.bakingapp.ui.recipelist.RecipeListViewModel;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,9 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(RecipeListViewModel.class)) {
             //noinspection unchecked
             return (T) new RecipeListViewModel(repository);
+        } else if (modelClass.isAssignableFrom(RecipeDetailViewModel.class)) {
+            //noinspection unchecked
+            return (T) new RecipeDetailViewModel(repository);
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }

@@ -8,13 +8,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.ajdi.yassin.bakingapp.R;
-import com.ajdi.yassin.bakingapp.widget.RecipeWidgetProvider;
 import com.ajdi.yassin.bakingapp.data.local.model.Recipe;
 import com.ajdi.yassin.bakingapp.data.local.model.Step;
 import com.ajdi.yassin.bakingapp.ui.stepdetail.StepDetailActivity;
 import com.ajdi.yassin.bakingapp.ui.stepdetail.StepDetailFragment;
 import com.ajdi.yassin.bakingapp.utils.ActivityUtils;
 import com.ajdi.yassin.bakingapp.utils.Constants;
+import com.ajdi.yassin.bakingapp.utils.Injection;
+import com.ajdi.yassin.bakingapp.utils.ViewModelFactory;
+import com.ajdi.yassin.bakingapp.widget.RecipeWidgetProvider;
 
 import java.util.ArrayList;
 
@@ -110,7 +112,8 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     }
 
     public static RecipeDetailViewModel obtainViewModel(FragmentActivity activity) {
-        return ViewModelProviders.of(activity).get(RecipeDetailViewModel.class);
+        ViewModelFactory factory = Injection.provideViewModelFactory(activity);
+        return ViewModelProviders.of(activity, factory).get(RecipeDetailViewModel.class);
     }
 
     private void closeOnError() {

@@ -6,7 +6,9 @@ import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.ajdi.yassin.bakingapp.R;
+import com.ajdi.yassin.bakingapp.data.RecipeRepository;
 import com.ajdi.yassin.bakingapp.data.local.model.Ingredient;
+import com.ajdi.yassin.bakingapp.utils.Injection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +44,10 @@ class RecipeRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory 
         // in its current state while work is being done here, so you don't need to worry about
         // locking up the widget.
         ingredientList.clear();
+        RecipeRepository repository = Injection.provideRecipeRepository(mContext);
 
+        List<Ingredient> ingredients = repository.getAllIngredients();
+        ingredientList.addAll(ingredients);
     }
 
     @Override

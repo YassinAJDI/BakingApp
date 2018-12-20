@@ -2,6 +2,7 @@ package com.ajdi.yassin.bakingapp.data.local;
 
 import android.content.Context;
 
+import com.ajdi.yassin.bakingapp.data.local.dao.IngredientsDao;
 import com.ajdi.yassin.bakingapp.data.local.dao.RecipesDao;
 import com.ajdi.yassin.bakingapp.data.local.model.Ingredient;
 import com.ajdi.yassin.bakingapp.data.local.model.Recipe;
@@ -19,7 +20,7 @@ import androidx.room.RoomDatabase;
         entities = {Recipe.class, Step.class, Ingredient.class},
         version = 1,
         exportSchema = false)
-abstract class RecipesDatabase extends RoomDatabase {
+public abstract class RecipesDatabase extends RoomDatabase {
 
     public static final String DATABASE_NAME = "Recipes.db";
 
@@ -28,6 +29,8 @@ abstract class RecipesDatabase extends RoomDatabase {
     private static final Object sLock = new Object();
 
     public abstract RecipesDao recipesDao();
+
+    public abstract IngredientsDao ingredientsDao();
 
     public static RecipesDatabase getInstance(Context context) {
         synchronized (sLock) {

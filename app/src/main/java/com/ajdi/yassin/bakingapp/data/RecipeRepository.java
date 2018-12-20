@@ -1,5 +1,7 @@
 package com.ajdi.yassin.bakingapp.data;
 
+import com.ajdi.yassin.bakingapp.data.local.RecipesDatabase;
+import com.ajdi.yassin.bakingapp.data.local.model.Ingredient;
 import com.ajdi.yassin.bakingapp.data.remote.RecipeService;
 import com.ajdi.yassin.bakingapp.data.local.model.Recipe;
 import com.ajdi.yassin.bakingapp.utils.AppExecutors;
@@ -21,27 +23,46 @@ import timber.log.Timber;
 public class RecipeRepository {
 
     private static volatile RecipeRepository sInstance;
-
     private final RecipeService mRecipeService;
-
+    private final RecipesDatabase mRecipesDatabase;
     private final AppExecutors mExecutors;
 
     private RecipeRepository(AppExecutors executors,
-                             RecipeService recipeService) {
+                             RecipeService recipeService,
+                             RecipesDatabase database) {
         mExecutors = executors;
         mRecipeService = recipeService;
+        mRecipesDatabase = database;
     }
 
     public static RecipeRepository getInstance(AppExecutors executors,
-                                               RecipeService recipeService) {
+                                               RecipeService recipeService,
+                                               RecipesDatabase database) {
         if (sInstance == null) {
             synchronized (RecipeRepository.class) {
                 if (sInstance == null) {
-                    sInstance = new RecipeRepository(executors, recipeService);
+                    sInstance = new RecipeRepository(executors, recipeService, database);
                 }
             }
         }
         return sInstance;
+    }
+
+    public List<Ingredient> getAllIngredients() {
+        return mRecipesDatabase.ingredientsDao().getAllIngredients();
+    }
+
+    public void saveRecipe(Recipe recipe) {
+        mRecipesDatabase.recipesDao().insertRecipe(recipe);
+        insertIngredients(recipe.getIngredients(), recipe.getId());
+    }
+
+    private void insertIngredients(List<Ingredient> ingredients, long recipeId) {
+//        for (Ingredient review : reviews) {
+//            review.setMovieId(movieId);
+//        }
+        mRecipesDatabase.ingredientsDao().insertAllIngredients(ingredients);
+        Timber.d("%s ingredients inserted into database.", ingredients.size());
     }
 
     public LiveData<List<Recipe>> loadAllRecipes() {
