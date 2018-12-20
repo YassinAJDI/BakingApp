@@ -48,7 +48,8 @@ public class RecipeWidgetProvider extends AppWidgetProvider {
 //        intent.setAction()
 //        int flags = Intent.FLAG_ACTIVITY_NEW_TASK;
         PendingIntent pendingIntent = PendingIntent.getActivity(context, appWidgetId, intent, 0);
-        views.setOnClickPendingIntent(R.id.widget_container, pendingIntent);
+        views.setOnClickPendingIntent(R.id.widget_list_container, pendingIntent);
+
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }

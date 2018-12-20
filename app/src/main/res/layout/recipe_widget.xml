@@ -1,33 +1,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_list_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#09C"
+    android:background="@color/md_white_1000"
     android:orientation="vertical"
-    android:id="@+id/widget_container"
     android:padding="@dimen/widget_margin">
 
     <TextView
         android:id="@+id/appwidget_recipe_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="#09C"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
         android:contentDescription="@string/appwidget_text"
+        android:gravity="center"
+        android:padding="16dp"
         android:text="@string/appwidget_text"
         android:textColor="#ffffff"
         android:textSize="24sp"
         android:textStyle="bold|italic" />
 
-    <TextView
-        android:id="@+id/appwidget_ingredient"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/widget_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="#09C"
-        android:contentDescription="@string/appwidget_text"
-        android:text="Ingredients"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:textStyle="bold|italic" />
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="Widget empty. widget will automatically updated once you navigate the app."
+        android:textSize="14sp" />
 
 </LinearLayout>

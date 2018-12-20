@@ -23,8 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.recipedetail.RecipeDetailsActivity" />
-        <activity
-            android:name=".ui.stepdetail.StepDetailActivity" />
+        <activity android:name=".ui.stepdetail.StepDetailActivity" />
 
         <receiver android:name=".widget.RecipeWidgetProvider">
             <intent-filter>
@@ -35,6 +34,10 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/recipe_widget_info" />
         </receiver>
+
+        <service
+            android:name=".widget.RecipeWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>
