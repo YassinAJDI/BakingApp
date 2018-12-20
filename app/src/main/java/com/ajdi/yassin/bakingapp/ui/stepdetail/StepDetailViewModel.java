@@ -1,6 +1,6 @@
 package com.ajdi.yassin.bakingapp.ui.stepdetail;
 
-import com.ajdi.yassin.bakingapp.data.model.Step;
+import com.ajdi.yassin.bakingapp.data.local.model.Step;
 import com.ajdi.yassin.bakingapp.utils.SingleLiveEvent;
 
 import java.util.List;

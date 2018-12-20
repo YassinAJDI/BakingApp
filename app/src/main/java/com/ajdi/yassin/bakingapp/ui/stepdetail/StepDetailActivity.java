@@ -3,7 +3,7 @@ package com.ajdi.yassin.bakingapp.ui.stepdetail;
 import android.os.Bundle;
 
 import com.ajdi.yassin.bakingapp.R;
-import com.ajdi.yassin.bakingapp.data.model.Step;
+import com.ajdi.yassin.bakingapp.data.local.model.Step;
 import com.ajdi.yassin.bakingapp.utils.ActivityUtils;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp.data.model;
+package com.ajdi.yassin.bakingapp.data.local.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,10 +6,14 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+
 /**
  * @author Yassin Ajdi
  * @since 12/11/2018.
  */
+@Entity(tableName = "ingredient")
 public class Ingredient implements Parcelable {
 
     @SerializedName("quantity")
@@ -24,6 +28,7 @@ public class Ingredient implements Parcelable {
     @Expose
     private String ingredient;
 
+    @Ignore
     protected Ingredient(Parcel in) {
         quantity = in.readDouble();
         measure = in.readString();

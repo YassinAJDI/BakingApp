@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ajdi.yassin.bakingapp.R;
-import com.ajdi.yassin.bakingapp.data.model.Step;
+import com.ajdi.yassin.bakingapp.data.local.model.Step;
 import com.ajdi.yassin.bakingapp.databinding.FragmentStepDetailBinding;
 import com.ajdi.yassin.bakingapp.ui.recipedetail.videoplayer.PlayerState;
 import com.ajdi.yassin.bakingapp.ui.recipedetail.videoplayer.VideoPlayerComponent;

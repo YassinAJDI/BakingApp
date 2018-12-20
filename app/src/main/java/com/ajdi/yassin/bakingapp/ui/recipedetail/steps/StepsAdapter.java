@@ -3,7 +3,7 @@ package com.ajdi.yassin.bakingapp.ui.recipedetail.steps;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ajdi.yassin.bakingapp.data.model.Step;
+import com.ajdi.yassin.bakingapp.data.local.model.Step;
 import com.ajdi.yassin.bakingapp.ui.recipedetail.RecipeDetailViewModel;
 
 import java.util.List;

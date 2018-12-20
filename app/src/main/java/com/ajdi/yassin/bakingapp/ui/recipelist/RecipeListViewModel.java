@@ -1,7 +1,7 @@
 package com.ajdi.yassin.bakingapp.ui.recipelist;
 
 import com.ajdi.yassin.bakingapp.data.RecipeRepository;
-import com.ajdi.yassin.bakingapp.data.model.Recipe;
+import com.ajdi.yassin.bakingapp.data.local.model.Recipe;
 
 import java.util.List;
 

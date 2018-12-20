@@ -2,7 +2,7 @@ package com.ajdi.yassin.bakingapp.ui.recipedetail.ingredients;
 
 import android.view.ViewGroup;
 
-import com.ajdi.yassin.bakingapp.data.model.Ingredient;
+import com.ajdi.yassin.bakingapp.data.local.model.Ingredient;
 
 import java.util.List;
 

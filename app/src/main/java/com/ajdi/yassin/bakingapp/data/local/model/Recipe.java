@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp.data.model;
+package com.ajdi.yassin.bakingapp.data.local.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -8,12 +8,20 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 /**
  * @author Yassin Ajdi
  * @since 12/11/2018.
  */
+@Entity(tableName = "recipe")
 public class Recipe implements Parcelable {
 
+    @NonNull
+    @PrimaryKey
     @SerializedName("id")
     @Expose
     private long id;
@@ -22,10 +30,12 @@ public class Recipe implements Parcelable {
     @Expose
     private String name;
 
+    @Ignore
     @SerializedName("ingredients")
     @Expose
     private List<Ingredient> ingredients;
 
+    @Ignore
     @SerializedName("steps")
     @Expose
     private List<Step> steps;
@@ -38,6 +48,7 @@ public class Recipe implements Parcelable {
     @Expose
     private String image;
 
+    @Ignore
     protected Recipe(Parcel in) {
         id = in.readLong();
         name = in.readString();

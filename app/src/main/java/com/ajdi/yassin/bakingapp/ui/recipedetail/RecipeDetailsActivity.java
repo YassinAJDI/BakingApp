@@ -9,8 +9,8 @@ import android.os.Bundle;
 
 import com.ajdi.yassin.bakingapp.R;
 import com.ajdi.yassin.bakingapp.widget.RecipeWidgetProvider;
-import com.ajdi.yassin.bakingapp.data.model.Recipe;
-import com.ajdi.yassin.bakingapp.data.model.Step;
+import com.ajdi.yassin.bakingapp.data.local.model.Recipe;
+import com.ajdi.yassin.bakingapp.data.local.model.Step;
 import com.ajdi.yassin.bakingapp.ui.stepdetail.StepDetailActivity;
 import com.ajdi.yassin.bakingapp.ui.stepdetail.StepDetailFragment;
 import com.ajdi.yassin.bakingapp.utils.ActivityUtils;

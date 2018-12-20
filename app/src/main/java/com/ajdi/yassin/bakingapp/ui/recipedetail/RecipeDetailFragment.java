@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ajdi.yassin.bakingapp.R;
-import com.ajdi.yassin.bakingapp.data.model.Ingredient;
-import com.ajdi.yassin.bakingapp.data.model.Step;
+import com.ajdi.yassin.bakingapp.data.local.model.Ingredient;
+import com.ajdi.yassin.bakingapp.data.local.model.Step;
 import com.ajdi.yassin.bakingapp.ui.recipedetail.ingredients.IngredientsAdapter;
 import com.ajdi.yassin.bakingapp.ui.recipedetail.steps.StepsAdapter;
 
