@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp.ui.details;
+package com.ajdi.yassin.bakingapp.ui.recipedetail;
 
 import com.ajdi.yassin.bakingapp.data.model.Ingredient;
 import com.ajdi.yassin.bakingapp.data.model.Recipe;

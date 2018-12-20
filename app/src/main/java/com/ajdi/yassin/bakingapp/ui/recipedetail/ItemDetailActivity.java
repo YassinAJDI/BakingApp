@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp.ui.details;
+package com.ajdi.yassin.bakingapp.ui.recipedetail;
 
 import android.app.ActionBar;
 import android.content.Intent;

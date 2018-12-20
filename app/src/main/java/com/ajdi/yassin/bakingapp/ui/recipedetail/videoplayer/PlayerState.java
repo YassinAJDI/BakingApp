@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp.ui.details.videoplayer;
+package com.ajdi.yassin.bakingapp.ui.recipedetail.videoplayer;
 
 import android.os.Parcel;
 import android.os.Parcelable;

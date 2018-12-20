@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp.ui.details.ingredients;
+package com.ajdi.yassin.bakingapp.ui.recipedetail.ingredients;
 
 import android.view.ViewGroup;
 

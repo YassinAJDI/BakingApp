@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp.ui.details.dummy;
+package com.ajdi.yassin.bakingapp.ui.recipedetail.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;

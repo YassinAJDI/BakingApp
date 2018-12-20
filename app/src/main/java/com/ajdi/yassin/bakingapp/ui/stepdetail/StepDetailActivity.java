@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp.ui.details.stepdetail;
+package com.ajdi.yassin.bakingapp.ui.stepdetail;
 
 import android.os.Bundle;
 

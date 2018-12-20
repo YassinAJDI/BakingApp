@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp.ui.list;
+package com.ajdi.yassin.bakingapp.ui.recipelist;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.ajdi.yassin.bakingapp.data.model.Recipe;
 import com.ajdi.yassin.bakingapp.databinding.ItemRecipeBinding;
-import com.ajdi.yassin.bakingapp.ui.details.RecipeDetailsActivity;
+import com.ajdi.yassin.bakingapp.ui.recipedetail.RecipeDetailsActivity;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;

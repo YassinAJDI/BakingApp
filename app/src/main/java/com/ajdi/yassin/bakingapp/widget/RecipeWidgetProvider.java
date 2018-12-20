@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp;
+package com.ajdi.yassin.bakingapp.widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -8,8 +8,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 
-import com.ajdi.yassin.bakingapp.ui.details.RecipeDetailsActivity;
-import com.ajdi.yassin.bakingapp.ui.list.RecipeListActivity;
+import com.ajdi.yassin.bakingapp.R;
+import com.ajdi.yassin.bakingapp.ui.recipedetail.RecipeDetailsActivity;
+import com.ajdi.yassin.bakingapp.ui.recipelist.RecipeListActivity;
 import com.ajdi.yassin.bakingapp.utils.Constants;
 
 import static android.content.Context.MODE_PRIVATE;

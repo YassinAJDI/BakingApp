@@ -1,7 +1,7 @@
 package com.ajdi.yassin.bakingapp.utils;
 
 import com.ajdi.yassin.bakingapp.data.RecipeRepository;
-import com.ajdi.yassin.bakingapp.ui.list.RecipeListViewModel;
+import com.ajdi.yassin.bakingapp.ui.recipelist.RecipeListViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;

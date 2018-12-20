@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp.ui.details.stepdetail;
+package com.ajdi.yassin.bakingapp.ui.stepdetail;
 
 
 import android.annotation.SuppressLint;
@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import com.ajdi.yassin.bakingapp.R;
 import com.ajdi.yassin.bakingapp.data.model.Step;
 import com.ajdi.yassin.bakingapp.databinding.FragmentStepDetailBinding;
-import com.ajdi.yassin.bakingapp.ui.details.videoplayer.PlayerState;
-import com.ajdi.yassin.bakingapp.ui.details.videoplayer.VideoPlayerComponent;
+import com.ajdi.yassin.bakingapp.ui.recipedetail.videoplayer.PlayerState;
+import com.ajdi.yassin.bakingapp.ui.recipedetail.videoplayer.VideoPlayerComponent;
 import com.ajdi.yassin.bakingapp.utils.GlideApp;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;

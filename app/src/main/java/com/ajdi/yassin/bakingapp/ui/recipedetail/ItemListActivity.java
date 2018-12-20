@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp.ui.details;
+package com.ajdi.yassin.bakingapp.ui.recipedetail;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ajdi.yassin.bakingapp.R;
-import com.ajdi.yassin.bakingapp.ui.details.dummy.DummyContent;
+import com.ajdi.yassin.bakingapp.ui.recipedetail.dummy.DummyContent;
 
 import java.util.List;
 

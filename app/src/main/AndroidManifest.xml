@@ -15,18 +15,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.list.RecipeListActivity">
+        <activity android:name=".ui.recipelist.RecipeListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.details.RecipeDetailsActivity" />
+        <activity android:name=".ui.recipedetail.RecipeDetailsActivity" />
         <activity
-            android:name=".ui.details.stepdetail.StepDetailActivity" />
+            android:name=".ui.stepdetail.StepDetailActivity" />
 
-        <receiver android:name=".RecipeWidgetProvider">
+        <receiver android:name=".widget.RecipeWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

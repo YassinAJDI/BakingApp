@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp.ui.details;
+package com.ajdi.yassin.bakingapp.ui.recipedetail;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import com.ajdi.yassin.bakingapp.R;
 import com.ajdi.yassin.bakingapp.data.model.Ingredient;
 import com.ajdi.yassin.bakingapp.data.model.Step;
-import com.ajdi.yassin.bakingapp.ui.details.ingredients.IngredientsAdapter;
-import com.ajdi.yassin.bakingapp.ui.details.steps.StepsAdapter;
+import com.ajdi.yassin.bakingapp.ui.recipedetail.ingredients.IngredientsAdapter;
+import com.ajdi.yassin.bakingapp.ui.recipedetail.steps.StepsAdapter;
 
 import java.util.List;
 

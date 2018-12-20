@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp.ui.details.steps;
+package com.ajdi.yassin.bakingapp.ui.recipedetail.steps;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

@@ -1,4 +1,4 @@
-package com.ajdi.yassin.bakingapp.ui.list;
+package com.ajdi.yassin.bakingapp.ui.recipelist;
 
 import android.os.Bundle;
 
