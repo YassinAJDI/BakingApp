@@ -8,7 +8,7 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/text_ingredient_name"
+        android:id="@+id/text_widget_ingredient_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
@@ -17,7 +17,7 @@
         tools:text="Graham Cracker crumbs" />
 
     <TextView
-        android:id="@+id/text_ingredient_quantity"
+        android:id="@+id/text_widget_ingredient_quantity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
