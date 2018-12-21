@@ -26,7 +26,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Recipe recipe = mRecipesList.get(position);
-        ((RecipeViewHolder) holder).bindTo(recipe);
+        ((RecipeViewHolder) holder).bindTo(recipe, position);
     }
 
     @Override

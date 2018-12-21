@@ -13,9 +13,14 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_margin"
+        android:layout_marginEnd="@dimen/horizontal_margin"
         android:layout_marginBottom="32dp"
-        app:cardElevation="0dp"
-        app:cardBackgroundColor="@android:color/transparent">
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardElevation="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,9 +30,8 @@
                 android:id="@+id/image_recipe_thumb"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                app:layout_constraintDimensionRatio="w,1:1"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="w,2:3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -36,11 +40,10 @@
             <TextView
                 android:id="@+id/text_recipe_name"
                 style="@style/Title.Recipe"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="@{recipe.name}"
                 app:layout_constraintBottom_toBottomOf="parent"
