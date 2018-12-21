@@ -1,16 +1,16 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <item name="colorPrimary">@color/primary_500</item>
-        <item name="colorPrimaryLight">@color/primary_100</item>
+        <!--<item name="colorPrimaryLight">@color/primary_100</item>-->
         <item name="colorPrimaryDark">@color/primary_800</item>
-        <item name="colorSecondary">@color/secondary_800</item>
-        <item name="colorSecondaryLight">@color/secondary_100</item>
-        <item name="colorSecondaryDark">@color/secondary_800</item>
+        <!--<item name="colorSecondary">@color/secondary_800</item>-->
+        <!--<item name="colorSecondaryLight">@color/secondary_100</item>-->
+        <!--<item name="colorSecondaryDark">@color/secondary_800</item>-->
         <item name="colorAccent">@color/colorAccent</item>
 
-        <!--<item name="android:fontFamily">@font/montserrat</item>-->
+        <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:textColor">@color/primary_500</item>
 
         <item name="android:windowBackground">@color/colorAccent</item>
@@ -21,8 +21,6 @@
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColorSecondary">@android:color/white</item>
     </style>
-
-    <style name="PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
     <!--Title-->
     <style name="Title" parent="AppTheme" />
