@@ -129,6 +129,7 @@ public class StepDetailFragment extends Fragment {
             if (isLandscape && !isTablet) {
                 hideShow(binding.stepDetailContent.stepDetailsHolder, false);
                 hideShow(binding.navigationButtonsContainer, false);
+                hideShow(getActivity().findViewById(R.id.toolbar), false);
                 removeConstraint();
                 expandVideoView();
                 hideSystemUi();
