@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.widget.RemoteViews;
 
 import com.ajdi.yassin.bakingapp.R;
-import com.ajdi.yassin.bakingapp.ui.recipedetail.RecipeDetailsActivity;
 import com.ajdi.yassin.bakingapp.ui.recipelist.RecipeListActivity;
 import com.ajdi.yassin.bakingapp.utils.Constants;
 
@@ -44,19 +43,20 @@ public class RecipeWidgetProvider extends AppWidgetProvider {
         SharedPreferences prefs = context.getSharedPreferences(Constants.MY_PREFS_NAME, MODE_PRIVATE);
         String recipeName = prefs.getString(context.getString(R.string.recipe_name), "No Recipe Added");
 //        String ingredients = prefs.getString(context.getString(R.string.ingredients), "Nothing!!");
-        long recipeId = prefs.getLong(context.getString(R.string.recipe_id), -1);
+//        long recipeId = prefs.getLong(context.getString(R.string.recipe_id), -1);
 
         // Update recipe name
         remoteViews.setTextViewText(R.id.widget_recipe_name, recipeName);
 
         // attach an on-click listener to the widget
-        Intent recipeIntent;
-        if (recipeId >= 0) {
-            recipeIntent = new Intent(context, RecipeDetailsActivity.class);
-            recipeIntent.putExtra(context.getString(R.string.recipe_id), recipeId);
-        } else {
-            recipeIntent = new Intent(context, RecipeListActivity.class);
-        }
+        Intent recipeIntent = new Intent(context, RecipeListActivity.class);
+
+//        if (recipeId >= 0) {
+//            recipeIntent = new Intent(context, RecipeDetailsActivity.class);
+//            recipeIntent.putExtra(context.getString(R.string.recipe_id), recipeId);
+//        } else {
+//
+//        }
 //        intent.setAction()
 //        int flags = Intent.FLAG_ACTIVITY_NEW_TASK;
         PendingIntent pendingIntent = PendingIntent.getActivity(context, appWidgetId, recipeIntent, 0);
