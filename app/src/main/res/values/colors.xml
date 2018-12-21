@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="primary_800">#356859</color>
+    <color name="primary_500">#37966F</color>
+    <color name="primary_100">#B9E4C9</color>
+    <color name="secondary_800">#C21900</color>
+    <color name="secondary_500">#FD5523</color>
+    <color name="secondary_100">#FF8851</color>
+    <color name="colorAccent">#FFFBE6</color>
+
+    <color name="bg_recipe_detail">#F2FFFBE6</color>
 
     <color name="md_white_1000">#ffffff</color>
 </resources>

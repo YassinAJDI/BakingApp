@@ -72,7 +72,8 @@ public class StepDetailFragment extends Fragment {
             Timber.d("Landscape");
         }
         // determine which layout we are in (tablet or phone)
-        if (getActivity().findViewById(R.id.fragment_step_detail) != null) {
+        if (getActivity().findViewById(R.id.fragment_step_detail) != null
+                && getActivity().findViewById(R.id.fragment_recipe_detail) != null) {
             isTablet = true;
         }
 

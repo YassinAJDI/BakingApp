@@ -2,10 +2,18 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/primary_500</item>
+        <item name="colorPrimaryLight">@color/primary_100</item>
+        <item name="colorPrimaryDark">@color/primary_800</item>
+        <item name="colorSecondary">@color/secondary_800</item>
+        <item name="colorSecondaryLight">@color/secondary_100</item>
+        <item name="colorSecondaryDark">@color/secondary_800</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!--<item name="android:fontFamily">@font/montserrat</item>-->
+        <item name="android:textColor">@color/primary_500</item>
+
+        <item name="android:windowBackground">@color/colorAccent</item>
     </style>
 
     <!--Toolbar-->
@@ -15,4 +23,14 @@
     </style>
 
     <style name="PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <!--Title-->
+    <style name="Title" parent="AppTheme" />
+
+    <style name="Title.Recipe">
+        <!--<item name="fontFamily">@font/montserrat_semibold</item>-->
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Display3</item>
+        <item name="android:textColor">@color/secondary_500</item>
+    </style>
 </resources>
