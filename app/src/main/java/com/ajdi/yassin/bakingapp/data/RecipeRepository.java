@@ -56,16 +56,14 @@ public class RecipeRepository {
         mExecutors.diskIO().execute(new Runnable() {
             @Override
             public void run() {
-                mRecipesDatabase.recipesDao().insertRecipe(recipe);
-                insertIngredients(recipe.getIngredients(), recipe.getId());
+//                mRecipesDatabase.recipesDao().insertRecipe(recipe);
+                mRecipesDatabase.ingredientsDao().nukeIngredient();
+                insertIngredients(recipe.getIngredients());
             }
         });
     }
 
-    private void insertIngredients(List<Ingredient> ingredients, long recipeId) {
-//        for (Ingredient review : reviews) {
-//            review.setMovieId(movieId);
-//        }
+    private void insertIngredients(List<Ingredient> ingredients) {
         mRecipesDatabase.ingredientsDao().insertAllIngredients(ingredients);
         Timber.d("%s ingredients inserted into database.", ingredients.size());
     }

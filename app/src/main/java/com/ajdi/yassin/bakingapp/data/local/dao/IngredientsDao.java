@@ -22,4 +22,7 @@ public interface IngredientsDao {
     @Query("SELECT * FROM ingredient")
     List<Ingredient> getAllIngredients();
 
+    @Query("DELETE FROM ingredient")
+    void nukeIngredient();
+
 }
