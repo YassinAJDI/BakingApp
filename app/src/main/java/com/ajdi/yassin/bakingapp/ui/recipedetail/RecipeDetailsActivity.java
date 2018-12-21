@@ -36,7 +36,10 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
     public static final String EXTRA_RECIPE_DATA = "extra_recipe";
 
+    private Recipe recipe;
+
     private boolean mTwoPane = false;
+
 
     private RecipeDetailViewModel mViewModel;
 
@@ -45,7 +48,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_details);
 
-        final Recipe recipe = getIntent().getParcelableExtra(EXTRA_RECIPE_DATA);
+        recipe = getIntent().getParcelableExtra(EXTRA_RECIPE_DATA);
         if (recipe == null) {
             closeOnError();
             return;
@@ -90,7 +93,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            setTitle("yassin");
+            setTitle(recipe.getName());
         }
     }
 
