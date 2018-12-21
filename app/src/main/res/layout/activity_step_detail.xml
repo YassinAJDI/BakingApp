@@ -7,6 +7,8 @@
     android:orientation="vertical"
     tools:context=".ui.stepdetail.StepDetailActivity">
 
+    <include layout="@layout/toolbar" />
+
     <FrameLayout
         android:id="@+id/fragment_step_detail"
         android:layout_width="match_parent"

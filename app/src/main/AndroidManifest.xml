@@ -16,7 +16,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".ui.recipelist.RecipeListActivity">
+        <activity
+            android:name=".ui.recipelist.RecipeListActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,9 +28,12 @@
 
         <activity
             android:name=".ui.recipedetail.RecipeDetailsActivity"
+            android:launchMode="singleTop"
             android:parentActivityName="com.ajdi.yassin.bakingapp.ui.recipelist.RecipeListActivity" />
 
-        <activity android:name=".ui.stepdetail.StepDetailActivity" />
+        <activity
+            android:name=".ui.stepdetail.StepDetailActivity"
+            android:parentActivityName="com.ajdi.yassin.bakingapp.ui.recipedetail.RecipeDetailsActivity" />
 
         <receiver android:name=".widget.RecipeWidgetProvider">
             <intent-filter>

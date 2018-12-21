@@ -18,8 +18,8 @@
 
     <!--Toolbar-->
     <style name="AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:textColorPrimary">@color/primary_800</item>
+        <item name="android:textColorSecondary">@color/primary_500</item>
     </style>
 
     <!--Title-->

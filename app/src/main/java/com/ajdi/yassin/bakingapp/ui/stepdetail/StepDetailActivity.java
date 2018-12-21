@@ -9,6 +9,7 @@ import com.ajdi.yassin.bakingapp.utils.ActivityUtils;
 import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -28,12 +29,12 @@ public class StepDetailActivity extends AppCompatActivity {
         ArrayList<Step> steps = getIntent().getParcelableArrayListExtra(EXTRA_STEP_LIST);
         int position = getIntent().getIntExtra(EXTRA_POSITION, -1);
 
-        setTitle("Step Detail");
         StepDetailViewModel mViewModel = obtainViewModel(this);
         if (savedInstanceState == null) {
             mViewModel.init(steps, position);
         }
 
+        setupToolbar();
         mViewModel.getNavigateToStepDetail().observe(this, new Observer<Step>() {
             @Override
             public void onChanged(Step step) {
@@ -43,6 +44,15 @@ public class StepDetailActivity extends AppCompatActivity {
                         getSupportFragmentManager(), fragment, R.id.fragment_step_detail);
             }
         });
+    }
+
+    private void setupToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            setTitle("Step Detail");
+        }
     }
 
     public static StepDetailViewModel obtainViewModel(FragmentActivity activity) {
