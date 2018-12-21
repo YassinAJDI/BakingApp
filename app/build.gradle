@@ -70,7 +70,16 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
     testImplementation 'junit:junit:4.12'
+
+    // Core library
+    androidTestImplementation 'androidx.test:core:1.0.0'
+
+    // AndroidJUnitRunner and JUnit Rules
     androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+
     // Espresso dependencies
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.1.1'
 }
