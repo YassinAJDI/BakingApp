@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -49,7 +50,6 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             closeOnError();
             return;
         }
-        setTitle(recipe.getName());
 
         // determine which layout we are in (tablet or phone)
         if (findViewById(R.id.fragment_step_detail) != null) {
@@ -57,13 +57,13 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         }
 
         mViewModel = obtainViewModel(this);
+        setupToolbar();
         if (savedInstanceState == null) {
             mViewModel.init(recipe);
             setupViewFragment();
             saveRecipeDataToSharedPreferences(recipe);
             refreshWidgetIngredientsList(recipe);
         }
-
         // observe steps list click event
         mViewModel.getOpenStepDetailEvent().observe(this, new Observer<Integer>() {
             @Override
@@ -83,6 +83,15 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void setupToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            setTitle("yassin");
+        }
     }
 
     private void refreshWidgetIngredientsList(Recipe recipe) {

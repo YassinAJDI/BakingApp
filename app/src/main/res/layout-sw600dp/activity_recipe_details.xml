@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <fragment
-        android:id="@+id/fragment_recipe_detail"
-        android:name="com.ajdi.yassin.bakingapp.ui.recipedetail.RecipeDetailFragment"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        app:popupTheme="@style/PopupOverlay" />
 
-    <FrameLayout
-        android:id="@+id/fragment_step_detail"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="3"
-        android:background="@color/colorAccent"/>
+        android:orientation="horizontal">
+
+        <fragment
+            android:id="@+id/fragment_recipe_detail"
+            android:name="com.ajdi.yassin.bakingapp.ui.recipedetail.RecipeDetailFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <FrameLayout
+            android:id="@+id/fragment_step_detail"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@color/colorAccent" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -47,6 +47,7 @@ public class StepDetailFragment extends Fragment {
     private boolean startAutoPlay;
     private int startWindow;
     private long startPosition;
+    private boolean isTablet;
 
     public StepDetailFragment() {
         // Required empty public constructor
@@ -69,6 +70,10 @@ public class StepDetailFragment extends Fragment {
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             isLandscape = true;
             Timber.d("Landscape");
+        }
+        // determine which layout we are in (tablet or phone)
+        if (getActivity().findViewById(R.id.fragment_step_detail) != null) {
+            isTablet = true;
         }
 
         binding = FragmentStepDetailBinding.inflate(inflater, container, false);
@@ -120,7 +125,7 @@ public class StepDetailFragment extends Fragment {
             getLifecycle().addObserver(
                     new VideoPlayerComponent(getActivity(), playerView, playerState));
 
-            if (isLandscape) {
+            if (isLandscape && !isTablet) {
                 hideShow(binding.stepDetailContent.stepDetailsHolder, false);
                 hideShow(binding.navigationButtonsContainer, false);
                 removeConstraint();
@@ -144,7 +149,7 @@ public class StepDetailFragment extends Fragment {
             hideShow(binding.stepDetailContent.imageStep, false);
         }
 
-        if (!isLandscape) {
+        if (!isLandscape && !isTablet) {
             if (mViewModel.hasNext()) {
                 hideShow(binding.buttonNext, true);
             } else {

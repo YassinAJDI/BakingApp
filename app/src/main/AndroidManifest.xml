@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity android:name=".ui.recipelist.RecipeListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.recipedetail.RecipeDetailsActivity" />
+
+        <activity
+            android:name=".ui.recipedetail.RecipeDetailsActivity"
+            android:parentActivityName="com.ajdi.yassin.bakingapp.ui.recipelist.RecipeListActivity" />
+
         <activity android:name=".ui.stepdetail.StepDetailActivity" />
 
         <receiver android:name=".widget.RecipeWidgetProvider">
