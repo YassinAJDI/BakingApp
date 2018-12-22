@@ -18,6 +18,9 @@
                 android:id="@+id/video_player"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginStart="@dimen/horizontal_margin"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="@dimen/horizontal_margin"
                 app:layout_constraintDimensionRatio="16:9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -27,9 +30,9 @@
                 android:id="@+id/step_details_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/horizontal_margin"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="@dimen/horizontal_margin"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +41,7 @@
                 <ImageView
                     android:id="@+id/image_step"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:scaleType="centerCrop"
                     tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
