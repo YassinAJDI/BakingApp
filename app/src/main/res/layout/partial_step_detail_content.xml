@@ -57,7 +57,7 @@
                         android:layout_marginEnd="@dimen/horizontal_margin_double"
                         android:alpha="0.5"
                         android:background="@color/primary_100"
-                        app:layout_constraintBottom_toBottomOf="@id/test"
+                        app:layout_constraintBottom_toBottomOf="@id/text_description"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@id/tvTitle" />
@@ -66,7 +66,7 @@
                         android:layout_width="0dp"
                         android:layout_height="1dp"
                         android:background="@color/primary_500"
-                        app:layout_constraintBottom_toTopOf="@id/test"
+                        app:layout_constraintBottom_toTopOf="@id/text_description"
                         app:layout_constraintEnd_toEndOf="@id/vItemBackground"
                         app:layout_constraintStart_toStartOf="@id/vItemBackground"
                         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
@@ -83,7 +83,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/test"
+                        android:id="@+id/text_description"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/horizontal_margin_tri"

@@ -179,7 +179,8 @@ public class StepDetailFragment extends Fragment {
             });
         }
 
-        binding.stepDetailContent.test.setText(step.getDescription());
+        binding.stepDetailContent.tvTitle.setText(step.getShortDescription());
+        binding.stepDetailContent.textDescription.setText(step.getDescription());
         binding.stepDetailContent.executePendingBindings();
         binding.executePendingBindings();
     }
