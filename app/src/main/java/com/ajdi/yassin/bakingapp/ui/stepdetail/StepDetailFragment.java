@@ -31,9 +31,6 @@ import timber.log.Timber;
  */
 public class StepDetailFragment extends Fragment {
 
-    private static final String KEY_WINDOW = "window";
-    private static final String KEY_POSITION = "position";
-    private static final String KEY_AUTO_PLAY = "auto_play";
     public static final String KEY_STEP_DATA = "step_data";
     private static final String KEY_PLAYER_STATE = "KEY_PLAYER_STATE";
 
@@ -44,9 +41,6 @@ public class StepDetailFragment extends Fragment {
     private Step step;
     private boolean isLandscape;
 
-    private boolean startAutoPlay;
-    private int startWindow;
-    private long startPosition;
     private boolean isTablet;
 
     public StepDetailFragment() {
@@ -90,9 +84,6 @@ public class StepDetailFragment extends Fragment {
         if (savedInstanceState != null) {
             step = savedInstanceState.getParcelable(KEY_STEP_DATA);
             playerState = savedInstanceState.getParcelable(KEY_PLAYER_STATE);
-//            playerState.whenReady = savedInstanceState.getBoolean(KEY_AUTO_PLAY);
-//            playerState.window = savedInstanceState.getInt(KEY_WINDOW);
-//            playerState.position = savedInstanceState.getLong(KEY_POSITION);
         } else {
             step = getArguments().getParcelable(KEY_STEP_DATA);
             clearStartPosition();
@@ -104,9 +95,6 @@ public class StepDetailFragment extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putParcelable(KEY_STEP_DATA, step);
         outState.putParcelable(KEY_PLAYER_STATE, playerState);
-//        outState.putBoolean(KEY_AUTO_PLAY, playerState.whenReady);
-//        outState.putInt(KEY_WINDOW, playerState.window);
-//        outState.putLong(KEY_POSITION, playerState.position);
 
         super.onSaveInstanceState(outState);
     }
