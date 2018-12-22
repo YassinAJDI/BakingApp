@@ -62,7 +62,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         mViewModel = obtainViewModel(this);
         setupToolbar();
         if (savedInstanceState == null) {
-            mViewModel.init(recipe);
+            mViewModel.init(recipe, mTwoPane);
             setupViewFragment();
             saveRecipeDataToSharedPreferences(recipe);
             refreshWidgetIngredientsList(recipe);
@@ -79,7 +79,6 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                 } else {
                     ArrayList<Step> steps = new ArrayList<>(recipe.getSteps());
                     Intent intent = new Intent(RecipeDetailsActivity.this, StepDetailActivity.class);
-//                    intent.putExtra(StepDetailActivity.EXTRA_STEP, step);
                     intent.putParcelableArrayListExtra(StepDetailActivity.EXTRA_STEP_LIST, steps);
                     intent.putExtra(StepDetailActivity.EXTRA_POSITION, position);
                     startActivity(intent);

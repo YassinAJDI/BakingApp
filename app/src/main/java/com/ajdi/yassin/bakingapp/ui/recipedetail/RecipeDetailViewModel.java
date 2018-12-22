@@ -35,15 +35,16 @@ public class RecipeDetailViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    public void init(Recipe recipe) {
+    public void init(Recipe recipe, boolean twoPane) {
         Timber.d("Initializing viewModel");
 
         repository.saveRecipe(recipe);
 
-//        setRecipeLiveData(recipe);
         setIngredients(recipe.getIngredients());
         setSteps(recipe.getSteps());
-//        setCurrentStep(0);
+        if (twoPane) {
+            setCurrentStep(0);
+        }
     }
 
     public void setCurrentStep(int position) {
