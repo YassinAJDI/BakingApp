@@ -13,8 +13,8 @@ import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 /**
@@ -26,6 +26,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 public class RecipeListActivityTest {
 
     private static final int MIN_RECIPE_COUNT = 4;
+    private static final int SECOND_POSITION = 1;
 
     @Rule
     public ActivityTestRule<RecipeListActivity> mActivityRule =
@@ -41,7 +42,9 @@ public class RecipeListActivityTest {
 
     @Test
     public void changeText_sameActivity() {
-        onView(withId(R.id.rv_recipe_list)).check(matches(hasMinimumChildCount(MIN_RECIPE_COUNT)));
+//        onView(withId(R.id.rv_recipe_list)).check(matches(hasMinimumChildCount(MIN_RECIPE_COUNT)));
+//        EspressoIdlingResource.
+        onView(withId(R.id.rv_recipe_list)).perform(actionOnItemAtPosition(SECOND_POSITION, click()));
         // Type text and then press the button.
 //        onView(withId(R.id.editTextUserInput))
 //                .perform(typeText(mStringToBetyped), closeSoftKeyboard());
