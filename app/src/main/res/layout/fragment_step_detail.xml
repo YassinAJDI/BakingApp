@@ -29,11 +29,18 @@
             android:id="@+id/navigation_buttons_container"
             android:layout_width="0dp"
             android:layout_height="64dp"
-            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline3">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/primary_100"
+                app:layout_constraintEnd_toEndOf="@+id/navigation_buttons_container"
+                app:layout_constraintStart_toStartOf="@+id/navigation_buttons_container"
+                app:layout_constraintTop_toTopOf="@+id/navigation_buttons_container" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_prev"
@@ -41,8 +48,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textColor="@color/primary_500"
                 android:text="@string/previous"
+                android:textColor="@color/primary_500"
                 app:layout_constraintEnd_toStartOf="@+id/button_next"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -53,8 +60,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textColor="@color/primary_500"
                 android:text="@string/next"
+                android:textColor="@color/primary_500"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
