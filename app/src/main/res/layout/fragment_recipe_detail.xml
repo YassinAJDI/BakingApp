@@ -11,12 +11,14 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_ingredients"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/horizontal_margin" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_steps"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/horizontal_margin" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
