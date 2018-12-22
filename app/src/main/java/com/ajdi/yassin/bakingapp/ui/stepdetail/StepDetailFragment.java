@@ -119,7 +119,8 @@ public class StepDetailFragment extends Fragment {
 
     private void populateUi() {
         Timber.d("populateUi");
-        if (!step.getVideoURL().isEmpty()) {
+        boolean hasVideo = !step.getVideoURL().isEmpty();
+        if (hasVideo) {
             // initialize and show video player
             playerView = binding.stepDetailContent.videoPlayer;
             playerState.videoUrl = step.getVideoURL();
@@ -151,7 +152,7 @@ public class StepDetailFragment extends Fragment {
             hideShow(binding.stepDetailContent.imageStep, false);
         }
 
-        if (!isLandscape && !isTablet) {
+        if (!isTablet && (!isLandscape || !hasVideo)) {
             if (mViewModel.hasNext()) {
                 hideShow(binding.buttonNext, true);
             } else {
