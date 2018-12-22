@@ -187,12 +187,22 @@ public class StepDetailFragment extends Fragment {
     }
 
     private void removeConstraint() {
+        // step details
         ConstraintSet set = new ConstraintSet();
         ConstraintLayout layout = binding.stepDetailsContainer;
         set.clone(layout);
         set.clear(R.id.step_detail_content, ConstraintSet.BOTTOM);
         set.connect(R.id.step_detail_content, ConstraintSet.BOTTOM, R.id.step_details_container, ConstraintSet.BOTTOM);
         set.applyTo(layout);
+
+        // video player constrains
+        set = new ConstraintSet();
+        ConstraintLayout playerContainer = binding.stepDetailContent.videoContainer;
+        set.clone(playerContainer);
+        set.clear(R.id.video_player, ConstraintSet.END);
+        set.clear(R.id.video_player, ConstraintSet.START);
+        set.clear(R.id.video_player, ConstraintSet.TOP);
+        set.applyTo(playerContainer);
     }
 
     private void expandVideoView() {
