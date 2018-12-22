@@ -12,7 +12,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/design_default_color_primary"
             android:orientation="vertical">
 
             <com.google.android.exoplayer2.ui.PlayerView
@@ -38,20 +37,68 @@
 
                 <ImageView
                     android:id="@+id/image_step"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="centerCrop"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-                <TextView
-                    android:id="@+id/test"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="This is a test"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/image_step" />
+                    android:layout_height="match_parent"
+                    android:background="@color/bg_recipe_detail">
+
+                    <View
+                        android:id="@+id/vItemBackground"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/horizontal_margin_double"
+                        android:layout_marginTop="@dimen/vertical_margin_quad"
+                        android:layout_marginEnd="@dimen/horizontal_margin_double"
+                        android:alpha="0.5"
+                        android:background="@color/primary_100"
+                        app:layout_constraintBottom_toBottomOf="@id/test"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:background="@color/primary_500"
+                        app:layout_constraintBottom_toTopOf="@id/test"
+                        app:layout_constraintEnd_toEndOf="@id/vItemBackground"
+                        app:layout_constraintStart_toStartOf="@id/vItemBackground"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        style="@style/Title.Recipe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vertical_margin_double"
+                        android:text="Creamy Pesto Pasta"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/test"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/horizontal_margin_tri"
+                        android:layout_marginTop="@dimen/vertical_margin_double"
+                        android:layout_marginEnd="@dimen/horizontal_margin_tri"
+                        android:fontFamily="@font/lekton_bold"
+                        android:lineSpacingExtra="8dp"
+                        android:paddingBottom="@dimen/vertical_margin"
+                        android:text="Guilt-free gluten-free spaghetti pasta is sautéed in a garilc, kale pesto. It\'s an easy and healthy dinner."
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        app:layout_constraintEnd_toEndOf="@id/vItemBackground"
+                        app:layout_constraintStart_toStartOf="@id/vItemBackground"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
