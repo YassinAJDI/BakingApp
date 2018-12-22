@@ -9,12 +9,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 /**
@@ -34,24 +38,37 @@ public class RecipeListActivityTest {
 
     @Before
     public void setUp() throws Exception {
+        Espresso.registerIdlingResources(
+                mActivityRule.getActivity().getCountingIdlingResource());
     }
 
     @After
     public void tearDown() throws Exception {
+        Espresso.unregisterIdlingResources(
+                mActivityRule.getActivity().getCountingIdlingResource());
+    }
+
+    @Test
+    public void onRecipeListActivityOpen_displayRecyclerView() {
+        // Check that the Recycler View is  displayed
+        onView(withId(R.id.rv_recipe_list)).check(matches(isDisplayed()));
     }
 
     @Test
     public void changeText_sameActivity() {
-//        onView(withId(R.id.rv_recipe_list)).check(matches(hasMinimumChildCount(MIN_RECIPE_COUNT)));
-//        EspressoIdlingResource.
-        onView(withId(R.id.rv_recipe_list)).perform(actionOnItemAtPosition(SECOND_POSITION, click()));
-        // Type text and then press the button.
-//        onView(withId(R.id.editTextUserInput))
-//                .perform(typeText(mStringToBetyped), closeSoftKeyboard());
-//        onView(withId(R.id.changeTextBt)).perform(click());
+        // check recyclerview has enough recipes
+        onView(withId(R.id.rv_recipe_list)).check(matches(hasMinimumChildCount(MIN_RECIPE_COUNT)));
 
-        // Check that the text was changed.
-//        Espresso.onView(withId(R.id.textToBeChanged))
-//                .check(matches(withText(mStringToBetyped)));
+//        onView(withId(R.id.rv_recipe_list)).perform(actionOnItemAtPosition(SECOND_POSITION, click()));
+    }
+
+    @Test
+    public void clickRecipeListItem_openRecipeDetailsActivity() {
+
+        onView(withId(R.id.rv_recipe_list))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
+
+        onView(withId(R.id.rv_ingredients))
+                .check(matches(isDisplayed()));
     }
 }

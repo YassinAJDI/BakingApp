@@ -4,17 +4,20 @@ import android.os.Bundle;
 
 import com.ajdi.yassin.bakingapp.R;
 import com.ajdi.yassin.bakingapp.data.local.model.Recipe;
+import com.ajdi.yassin.bakingapp.utils.EspressoIdlingResource;
 import com.ajdi.yassin.bakingapp.utils.Injection;
 import com.ajdi.yassin.bakingapp.utils.ViewModelFactory;
 
 import java.util.List;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.espresso.IdlingResource;
 
 /**
  * @author Yassin Ajdi
@@ -42,11 +45,15 @@ public class RecipeListActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
 
+        EspressoIdlingResource.increment();
         // observe recipe list
         viewModel.getListLiveData().observe(this, new Observer<List<Recipe>>() {
             @Override
             public void onChanged(List<Recipe> recipes) {
-                adapter.submitList(recipes);
+                if (recipes != null) {
+                    EspressoIdlingResource.decrement();
+                    adapter.submitList(recipes);
+                }
             }
         });
     }
@@ -54,5 +61,10 @@ public class RecipeListActivity extends AppCompatActivity {
     private RecipeListViewModel obtainViewModel() {
         ViewModelFactory factory = Injection.provideViewModelFactory(this);
         return ViewModelProviders.of(this, factory).get(RecipeListViewModel.class);
+    }
+
+    @VisibleForTesting
+    public IdlingResource getCountingIdlingResource() {
+        return EspressoIdlingResource.getIdlingResource();
     }
 }
