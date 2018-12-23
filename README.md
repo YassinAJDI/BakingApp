@@ -1,6 +1,12 @@
 # BakingApp
 Your task is to create a Android Baking App that will allow Udacity’s resident baker-in-chief, Miriam, to share her recipes with the world. You will create an app that will allow a user to select a recipe and see video-guided steps for how to complete it.
 
+## Screenshots
+<img src="screenshots/Screenshot_1.png" vspace="5" align= "left" width=275 >
+<img src="screenshots/Screenshot_2.png" vspace="5" align= "left" width=275 >
+<img src="screenshots/Screenshot_3.png" vspace="5" width=275>
+
+
 ## Project Overview
 In this project, you will create an app to view video recipes. You will handle media loading, verify your user interfaces with UI tests, and integrate third party libraries. You'll also provide a complete user experience with a home screen widget. This will involve finding and handling error cases, adding accessibility features, allowing for localization, adding a widget.
 
@@ -41,12 +47,13 @@ In this project you will:
 
 ## Libraries
 *   [AndroidX](https://developer.android.com/jetpack/androidx/) - Previously known as 'Android support Library'
+*   [ExoPlayer](https://github.com/google/ExoPlayer) An extensible media player for Android
+*   [Espresso](https://developer.android.com/training/testing/espresso/) Use Espresso to write concise, beautiful, and reliable Android UI tests.
 *   [Glide](https://github.com/bumptech/glide) - for loading and caching images 
 *   [Retrofit 2](https://github.com/square/retrofit) - Type-safe HTTP client for Android and Java by Square, Inc. 
 *   [Gson](https://github.com/google/gson) - for serialization/deserialization Java Objects into JSON and back
 *   [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
 *   [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
-*   [Paging](https://developer.android.com/topic/libraries/architecture/paging/)
 *   [DataBinding](https://developer.android.com/topic/libraries/data-binding/)
 *   [OkHttp](https://github.com/square/okhttp)
 *   [Timber](https://github.com/JakeWharton/timber)
