@@ -45,6 +45,9 @@ In this project you will:
 - [x] Application has a companion homescreen widget.
 - [x] Widget displays ingredient list for desired recipe.
 
+## Resources
+*   [Basil Material Design case studies](https://material.io/design/material-studies/basil.html) Design was inspired from Basil case studies
+
 ## Libraries
 *   [AndroidX](https://developer.android.com/jetpack/androidx/) - Previously known as 'Android support Library'
 *   [ExoPlayer](https://github.com/google/ExoPlayer) An extensible media player for Android
