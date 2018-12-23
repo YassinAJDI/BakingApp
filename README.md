@@ -15,7 +15,7 @@ In this project you will:
 *   Leverage a third-party library in your app.
 *   Use Fragments to create a responsive design that works on phones and tablets.
 
-## Rubric
+## Project Specification
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Common Project Requirements
